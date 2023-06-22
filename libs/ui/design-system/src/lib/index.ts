@@ -169,5 +169,14 @@ export type { CodeEditorProps } from "./components/CodeEditor/CodeEditor";
 export { LimitationNotification } from "./components/LimitationNotification/LimitationNotification";
 export type { Props as LimitationNotificationProps } from "./components/LimitationNotification/LimitationNotification";
 
+<<<<<<< HEAD
+=======
+export { UpgradeLink } from "./components/LimitationNotification/LimitationNotification";
+export type { LinkProps as UpgradeLinkProps } from "./components/LimitationNotification/LimitationNotification";
+
+export { ContactUsLinkForEnterprise } from "./components/LimitationNotification/LimitationNotification";
+export type { LinkProps as ContactUsLinkForEnterpriseProps } from "./components/LimitationNotification/LimitationNotification";
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 export { PlanUpgradeConfirmation } from "./components/PlanUpgradeConfirmation/PlanUpgradeConfirmation";
 export type { Props as PlanUpgradeConfirmationProps } from "./components/PlanUpgradeConfirmation/PlanUpgradeConfirmation";

@@ -29,7 +29,11 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
+<<<<<<< HEAD
         project: ${{ fromJson(needs.nx.outputs.affected-dockerable) }}
+=======
+        project: ${{ fromJson(needs.nx.outputs.affected-package-container) }}
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     needs: nx
     steps:
       - name: Checkout source code repository
@@ -37,7 +41,27 @@ jobs:
         with:
           ref: "${{ github.ref }}"
 
+<<<<<<< HEAD
       - name: Install Dependencies
+=======
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: 'package.json'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+      
+      - name: Cache global node modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' || steps.cache-other-node-modules.outputs.cache-hit != 'true' }}
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         run: npm ci
 
       - name: Configure AWS Credentials (operations account)
@@ -64,15 +88,24 @@ jobs:
       # https://www.npmjs.com/package/@nx-tools/nx-docker
       # GIT_REF_NAME and GIT_SHA variables are substituted in the project.json docker target build-args
       - name: Package
+<<<<<<< HEAD
         run: npx nx docker:build ${{ matrix.project }} --prod 
+=======
+        run: npx nx package:container ${{ matrix.project }} --prod 
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         env:
           INPUT_TAGS: ${{ steps.meta.outputs.tags }}
           INPUT_PUSH: true
           GIT_REF_NAME: ${{ github.ref_name }}
           GIT_SHA: ${{ github.sha }}
 
+<<<<<<< HEAD
   deployment:
     name: Deployment
+=======
+  deployment-container:
+    name: Deployment container
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     runs-on: ubuntu-20.04
     environment: "production"
     needs: [preparation, nx, package]
@@ -84,11 +117,20 @@ jobs:
           token: "${{ secrets.PAT }}"
           fetch-depth: '0'
 
+<<<<<<< HEAD
       - uses: mikefarah/yq@v4.30.8
 
       - name: Replace image tag
         run: |
           nx=${{ needs.nx.outputs.affected-dockerable }}
+=======
+      - name: Setup yq
+        uses: mikefarah/yq@v4.30.8
+
+      - name: Replace image tag
+        run: |
+          nx=${{ needs.nx.outputs.affected-package-container }}
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
           array=$(echo $nx | sed -e 's/\[//g' -e 's/\]//g' -e 's/\,/ /g')
 
           for i in $array; do
@@ -120,6 +162,26 @@ jobs:
           labels: "release"
           reviewers: "${{ github.actor }}"
 
+<<<<<<< HEAD
+=======
+  deployment-static:
+    name: Deployment static
+    needs: nx
+    if: ${{ needs.nx.outputs.affected-deploy-static != '[]' && needs.nx.outputs.affected-deploy-static != ''}}
+    strategy:
+      matrix:
+        project: ${{ fromJson(needs.nx.outputs.affected-deploy-static) }}
+    uses: ./.github/workflows/deployment.static.template.yml
+    with:
+      environment-name: "production"
+      project-name: ${{ matrix.project }}
+      deploy-type: "static"
+    secrets:
+      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   nx:
     name: Nx
     needs: preparation

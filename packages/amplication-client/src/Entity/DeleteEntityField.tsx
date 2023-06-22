@@ -146,6 +146,10 @@ const GET_ENTITY_WITH_SPECIFIC_FIELD = gql`
       name
       displayName
       pluralDisplayName
+<<<<<<< HEAD
+=======
+      customAttributes
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       fields(where: { permanentId: { equals: $fieldId } }) {
         id
         createdAt
@@ -157,6 +161,10 @@ const GET_ENTITY_WITH_SPECIFIC_FIELD = gql`
         required
         unique
         searchable
+<<<<<<< HEAD
+=======
+        customAttributes
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         description
       }
     }

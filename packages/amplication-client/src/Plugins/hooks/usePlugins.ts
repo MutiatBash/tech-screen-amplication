@@ -12,10 +12,20 @@ import * as models from "../../models";
 import { keyBy } from "lodash";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { AppContext } from "../../context/appContext";
+<<<<<<< HEAD
 
 export type PluginVersion = {
   version: string;
   settings: string;
+=======
+import { LATEST_VERSION_TAG } from "../constant";
+
+export type PluginVersion = {
+  version: string;
+  isLatest: boolean;
+  settings: string;
+  configurations: string;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   id: string;
   pluginId: string;
 };
@@ -32,6 +42,10 @@ export type Plugin = {
   website: string;
   category: string;
   type: string;
+<<<<<<< HEAD
+=======
+  taggedVersions: { [tag: string]: string };
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   versions: PluginVersion[];
 };
 
@@ -129,10 +143,39 @@ const usePlugins = (resourceId: string, pluginInstallationId?: string) => {
   useEffect(() => {
     if (!pluginsVersionData || loadingPluginsVersionData) return;
 
+<<<<<<< HEAD
     const sortedPlugins = keyBy(
       pluginsVersionData.plugins,
       (plugin) => plugin.pluginId
     );
+=======
+    const pluginsWithLatestVersion = pluginsVersionData.plugins.map(
+      (plugin) => {
+        const latestVersion = plugin.versions.find(
+          (pluginVersion) => pluginVersion.isLatest
+        );
+        if (latestVersion) {
+          return {
+            ...plugin,
+            versions: [
+              {
+                ...latestVersion,
+                id: `${latestVersion.id}-${LATEST_VERSION_TAG}`,
+                version: LATEST_VERSION_TAG,
+              },
+              ...plugin.versions,
+            ],
+          };
+        } else return plugin;
+      }
+    );
+
+    const sortedPlugins = keyBy(
+      pluginsWithLatestVersion,
+      (plugin) => plugin.pluginId
+    );
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     setPluginsVersion(sortedPlugins);
   }, [pluginsVersionData, loadingPluginsVersionData]);
 

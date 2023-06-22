@@ -4,6 +4,10 @@ import { useTracking } from "../../util/analytics";
 import { AnalyticsEventNames } from "../../util/analytics-events.types";
 import { EnumGitProvider } from "../../models";
 import { CREATE_GIT_ORGANIZATION } from "./queries/git-callback";
+<<<<<<< HEAD
+=======
+import { GET_PROJECTS } from "../../Workspaces/queries/projectQueries";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 const AuthResourceWithGithubCallback = () => {
   const { trackEvent } = useTracking();
@@ -13,6 +17,14 @@ const AuthResourceWithGithubCallback = () => {
       // close the popup
       window.close();
     },
+<<<<<<< HEAD
+=======
+    refetchQueries: [
+      {
+        query: GET_PROJECTS,
+      },
+    ],
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   });
 
   useEffect(() => {

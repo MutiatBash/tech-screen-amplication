@@ -34,8 +34,13 @@ export class Logger implements ILogger {
 
   public getLoggerFormat(): Format {
     const developmentFormats: Format[] = [
+<<<<<<< HEAD
       format.errors({ stack: true }),
       format.timestamp(),
+=======
+      format.timestamp(),
+      format.errors({ stack: true, cause: true }),
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       customFormat(),
     ];
     if (this.options.additionalDevelopmentFormats) {
@@ -46,8 +51,13 @@ export class Logger implements ILogger {
     }
 
     const productionFormats: Format[] = [
+<<<<<<< HEAD
       format.errors({ stack: true }),
       format.timestamp(),
+=======
+      format.timestamp(),
+      format.errors({ stack: true, cause: true }),
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       format.json(),
     ];
     if (this.options.additionalFormats) {
@@ -71,14 +81,35 @@ export class Logger implements ILogger {
     this.logger.warn(message, params);
   }
 
+<<<<<<< HEAD
   error(message: string, params?: Record<string, unknown>, err?: Error): void {
     this.logger.error(message, params, err);
+=======
+  error(
+    message: string,
+    error?: Error,
+    params?: Record<string, unknown>
+  ): void {
+    if (error) {
+      Object.assign(error, {
+        message,
+        ...(error.message !== message ? { errorMessage: error.message } : {}),
+        ...params,
+      });
+      this.logger.error(error);
+    }
+    this.logger.error(message, params);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   }
 
   child(metadata?: Pick<LoggerOptions, "metadata">): Logger {
     return new Logger({
       ...this.options,
+<<<<<<< HEAD
       metadata: { ...this.options.metadata, metadata },
+=======
+      metadata: { ...this.options.metadata, ...metadata },
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     });
   }
 }

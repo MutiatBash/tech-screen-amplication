@@ -15,6 +15,11 @@ import { AppContext } from "../context/appContext";
 import { Plugin, PluginVersion } from "./hooks/usePlugins";
 import { PluginLogo } from "./PluginLogo";
 import "./PluginsCatalogItem.scss";
+<<<<<<< HEAD
+=======
+import { LATEST_VERSION_TAG } from "./constant";
+import { REACT_APP_PLUGIN_VERSION_USE_LATEST } from "../env";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 type Props = {
   plugin: Plugin;
@@ -26,6 +31,10 @@ type Props = {
   isDraggable?: boolean;
 };
 
+<<<<<<< HEAD
+=======
+const pluginUseLatest = REACT_APP_PLUGIN_VERSION_USE_LATEST === "true";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 const CLASS_NAME = "plugins-catalog-item";
 
 function PluginsCatalogItem({
@@ -56,8 +65,21 @@ function PluginsCatalogItem({
   }, [onOrderChange, order, pluginInstallation]);
 
   const handleInstall = useCallback(() => {
+<<<<<<< HEAD
     const lastVersion = plugin.versions[plugin.versions.length - 1];
     onInstall && onInstall(plugin, lastVersion);
+=======
+    // Get the "latest" version or the first one by the env variable flag
+    const hardcodedLatestVersion = pluginUseLatest
+      ? plugin.versions.find(
+          (version) => version.version === LATEST_VERSION_TAG
+        )
+      : plugin.versions.find(
+          (version) => version.version !== LATEST_VERSION_TAG
+        );
+
+    onInstall && onInstall(plugin, hardcodedLatestVersion);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   }, [onInstall, plugin]);
 
   const handleEnableStateChange = useCallback(() => {

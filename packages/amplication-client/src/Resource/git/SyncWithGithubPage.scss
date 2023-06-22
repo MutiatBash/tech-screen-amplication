@@ -3,6 +3,7 @@
 $max-width: 700px;
 $icon-font-size: 40px;
 
+<<<<<<< HEAD
 .sync-with-github-page {
   &__header {
     display: flex;
@@ -12,6 +13,11 @@ $icon-font-size: 40px;
       margin-right: var(--large-spacing);
       font-size: $icon-font-size;
     }
+=======
+.sync-with-git-page {
+  &__header {
+    @include title-18;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   }
 
   &__message {
@@ -22,6 +28,7 @@ $icon-font-size: 40px;
     margin-bottom: var(--default-spacing);
     max-width: $max-width;
   }
+<<<<<<< HEAD
 
   &__separator {
     margin: var(--large-spacing) 0;
@@ -29,4 +36,6 @@ $icon-font-size: 40px;
     border: none;
     background-color: var(--black5);
   }
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 }

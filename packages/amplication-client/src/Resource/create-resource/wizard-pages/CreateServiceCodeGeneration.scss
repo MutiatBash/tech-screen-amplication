@@ -15,7 +15,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+<<<<<<< HEAD
     gap: 8px;
+=======
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 57px;
+    gap: 8px;
+    color: var(--black100);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   }
 
   &__negative_status {

@@ -54,6 +54,7 @@ const ResourceHome = ({ match, innerRoutes }: Props) => {
               currentResource={currentResource}
               resourceId={resourceId}
             />
+<<<<<<< HEAD
             <CircleBadge
               name={currentResource?.name || ""}
               color={
@@ -61,6 +62,17 @@ const ResourceHome = ({ match, innerRoutes }: Props) => {
                 "transparent"
               }
             />
+=======
+            <div className="circle-badge-container">
+              <CircleBadge
+                name={currentResource?.name || ""}
+                color={
+                  resourceThemeMap[currentResource?.resourceType].color ||
+                  "transparent"
+                }
+              />
+            </div>
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
           </div>
           <div className={`${CLASS_NAME}__tiles`}>
             {currentResource?.resourceType === EnumResourceType.Service && (

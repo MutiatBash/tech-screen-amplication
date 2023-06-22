@@ -1,12 +1,17 @@
 import { EnumResourceType } from "../models";
 
+<<<<<<< HEAD
 export type MenuItemLinks = "entities" | "roles" | "github" | "settings";
+=======
+export type MenuItemLinks = "entities" | "roles" | "git" | "settings";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 export const resourceMenuLayout: { [key: string]: string[] } = {
   [EnumResourceType.Service]: [
     "entities",
     "roles",
     "connections",
+<<<<<<< HEAD
     "github",
     "settings",
     "plugins",
@@ -18,6 +23,14 @@ export const resourceMenuLayout: { [key: string]: string[] } = {
     "github",
     "settings",
   ],
+=======
+    "git",
+    "settings",
+    "plugins",
+  ],
+  [EnumResourceType.ProjectConfiguration]: ["git", "settings"],
+  [EnumResourceType.MessageBroker]: ["topics", "services", "git", "settings"],
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 };
 
 export const linksMap = {
@@ -31,10 +44,17 @@ export const linksMap = {
     icon: "roles_outline",
     to: "/roles",
   },
+<<<<<<< HEAD
   github: {
     title: "Connect to GitHub",
     icon: "github",
     to: "/github",
+=======
+  git: {
+    title: "Sync with Git provider",
+    icon: "git-sync",
+    to: "/git-sync",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   settings: {
     title: "Settings",

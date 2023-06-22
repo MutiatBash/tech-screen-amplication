@@ -3,6 +3,10 @@ import React from "react";
 import * as models from "../models";
 import { PendingChangeItem } from "../Workspaces/hooks/usePendingChanges";
 import { CreateWorkspaceType } from "../Workspaces/hooks/workspace";
+<<<<<<< HEAD
+=======
+import { CommitUtils } from "../VersionControl/hooks/useCommits";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 export interface AppContextInterface {
   currentWorkspace: models.Workspace | undefined;
@@ -42,6 +46,10 @@ export interface AppContextInterface {
   workspacesList: models.Workspace[];
   gitRepositoryFullName: string;
   gitRepositoryUrl: string;
+<<<<<<< HEAD
+=======
+  gitRepositoryOrganizationProvider: models.EnumGitProvider | undefined;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   createMessageBroker: (
     data: models.ResourceCreateInput,
     eventName: string
@@ -52,6 +60,10 @@ export interface AppContextInterface {
   setResetPendingChangesIndicator: (reset: boolean) => void;
   openHubSpotChat: () => void;
   createServiceWithEntitiesResult: models.ResourceCreateWithEntitiesResult;
+<<<<<<< HEAD
+=======
+  commitUtils: CommitUtils;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 }
 
 const initialContext: AppContextInterface = {
@@ -89,6 +101,10 @@ const initialContext: AppContextInterface = {
   workspacesList: [],
   gitRepositoryFullName: "",
   gitRepositoryUrl: "",
+<<<<<<< HEAD
+=======
+  gitRepositoryOrganizationProvider: undefined,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   createMessageBroker: () => {},
   loadingCreateMessageBroker: false,
   errorCreateMessageBroker: undefined,
@@ -96,6 +112,24 @@ const initialContext: AppContextInterface = {
   setResetPendingChangesIndicator: () => {},
   openHubSpotChat: () => {},
   createServiceWithEntitiesResult: undefined,
+<<<<<<< HEAD
+=======
+  commitUtils: {
+    commits: [],
+    lastCommit: null,
+    commitsError: null,
+    commitsLoading: false,
+    commitChangesByResource: (commitId: string) => [
+      {
+        resourceId: "",
+        changes: [],
+      },
+    ],
+    refetchCommitsData: () => {},
+    refetchLastCommit: () => {},
+    disableLoadMore: false,
+  },
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 };
 
 export const AppContext =

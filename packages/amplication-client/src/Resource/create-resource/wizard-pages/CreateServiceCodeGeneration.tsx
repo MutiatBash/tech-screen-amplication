@@ -13,8 +13,14 @@ import { AppContext } from "../../../context/appContext";
 import { useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { COMMIT_CHANGES } from "../../../VersionControl/Commit";
+<<<<<<< HEAD
 import { PUSH_TO_GITHUB_STEP_NAME } from "../../../VersionControl/BuildSteps";
 import { isEmpty } from "lodash";
+=======
+import { PUSH_TO_GIT_STEP_NAME } from "../../../VersionControl/BuildSteps";
+import { isEmpty } from "lodash";
+import { EnumGitProvider } from "@amplication/code-gen-types/models";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 const className = "create-service-code-generation";
 
@@ -73,6 +79,15 @@ const CreateServiceCodeGeneration: React.FC<
     codeGenStatus && formik.setFieldValue("isGenerateCompleted", "completed");
   }, [formik.values, data?.build?.status]);
 
+<<<<<<< HEAD
+=======
+  if (data?.build?.status === models.EnumBuildStatus.Failed) {
+    trackWizardPageEvent(AnalyticsEventNames.ViewServiceWizardError, {
+      errorInfo: data?.build?.message || "no info",
+    });
+  }
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   const actionLog = useMemo<LogData | null>(() => {
     if (!data?.build) return null;
 
@@ -90,10 +105,18 @@ const CreateServiceCodeGeneration: React.FC<
   }, [trackWizardPageEvent]);
 
   const handleContinueClick = useCallback(() => {
+<<<<<<< HEAD
+=======
+    trackWizardPageEvent(AnalyticsEventNames.ServiceWizardError_Continue);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     history.push(`/${currentWorkspace.id}/${currentProject.id}/${resource.id}`);
   }, [currentWorkspace, currentProject]);
 
   const handleTryAgainClick = useCallback(() => {
+<<<<<<< HEAD
+=======
+    trackWizardPageEvent(AnalyticsEventNames.ServiceWizardError_TryAgain);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     commit({
       variables: {
         message: "Initial commit",
@@ -102,12 +125,25 @@ const CreateServiceCodeGeneration: React.FC<
     }).catch(console.error);
   }, [commit, currentProject.id]);
 
+<<<<<<< HEAD
   const githubUrl = useMemo(() => {
     if (!data.build.action?.steps?.length) {
       return null;
     }
     const stepGithub = data.build.action.steps.find(
       (step) => step.name === PUSH_TO_GITHUB_STEP_NAME
+=======
+  const gitUrl = useMemo(() => {
+    if (!data.build.action?.steps?.length) {
+      return null;
+    }
+
+    const provider = formik.values.connectToDemoRepo
+      ? EnumGitProvider.Github
+      : resource?.gitRepository?.gitOrganization?.provider;
+    const stepGithub = data.build.action.steps.find(
+      (step) => step.name === PUSH_TO_GIT_STEP_NAME(provider)
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     );
 
     const log = stepGithub?.logs?.find(
@@ -115,7 +151,11 @@ const CreateServiceCodeGeneration: React.FC<
     );
 
     return log?.meta?.githubUrl || null;
+<<<<<<< HEAD
   }, [data.build.action]);
+=======
+  }, [data.build?.action]);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
   const buildRunning = data?.build?.status === models.EnumBuildStatus.Running;
 
@@ -126,7 +166,11 @@ const CreateServiceCodeGeneration: React.FC<
       {buildRunning ? (
         <div className={`${className}__buildLog`}>
           <div className={`${className}__title`}>
+<<<<<<< HEAD
             <h1>We’re generating your service...</h1>
+=======
+            We’re generating your service...
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
           </div>
           <div className={`${className}__status`}>
             <ActionLog
@@ -139,7 +183,11 @@ const CreateServiceCodeGeneration: React.FC<
       ) : buildFailed ? (
         <div className={`${className}__buildLog`}>
           <div className={`${className}__title`}>
+<<<<<<< HEAD
             <h1>We’re generating your service...</h1>
+=======
+            We’re generating your service...
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
           </div>
           <div className={`${className}__negative_status`}>
             <ActionLog
@@ -188,11 +236,19 @@ const CreateServiceCodeGeneration: React.FC<
                 <div
                   className={`${className}__status__completed__description__link`}
                 >
+<<<<<<< HEAD
                   {githubUrl}
                 </div>
                 <div />
               </div>
               <a href={githubUrl} target="docs">
+=======
+                  {gitUrl}
+                </div>
+                <div />
+              </div>
+              <a href={gitUrl} target="docs">
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
                 <Button
                   type="button"
                   buttonStyle={EnumButtonStyle.Clear}

@@ -1,6 +1,17 @@
+<<<<<<< HEAD
+=======
+@import "../style/index.scss";
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 .entity-field-link-list {
   display: flex;
   flex-direction: column;
   gap: var(--default-spacing-small);
   margin-bottom: var(--default-spacing-small);
+<<<<<<< HEAD
+=======
+  overflow-y: auto;
+  min-height: 0;
+  @include scrollbars(16px, var(--black60), transparent);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 }

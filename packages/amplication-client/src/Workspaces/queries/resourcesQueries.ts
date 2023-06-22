@@ -17,11 +17,18 @@ export const GET_RESOURCES = gql`
       gitRepository {
         id
         name
+        groupName
         gitOrganization {
           id
           name
           type
+          provider
+          useGroupingForRepositories
         }
+      }
+      entities {
+        id
+        name
       }
       builds(orderBy: { createdAt: Desc }, take: 1) {
         id
@@ -75,9 +82,11 @@ export const CREATE_SERVICE_WITH_ENTITIES = gql`
         gitRepository {
           id
           name
+          groupName
           gitOrganization {
             id
             name
+            provider
           }
         }
         resourceType
@@ -139,6 +148,7 @@ export const DISCONNECT_GIT_REPOSITORY = gql`
       id
       gitRepository {
         id
+        groupName
       }
     }
   }
@@ -150,6 +160,7 @@ export const CONNECT_RESOURCE_PROJECT_REPO = gql`
       id
       gitRepository {
         id
+        groupName
       }
     }
   }

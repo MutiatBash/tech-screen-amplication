@@ -12,6 +12,10 @@ export const GET_PLUGIN_INSTALLATIONS = gql`
       enabled
       version
       settings
+<<<<<<< HEAD
+=======
+      configurations
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     }
   }
 `;
@@ -25,6 +29,10 @@ export const GET_PLUGIN_INSTALLATION = gql`
       enabled
       version
       settings
+<<<<<<< HEAD
+=======
+      configurations
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     }
   }
 `;
@@ -92,6 +100,7 @@ export const GET_PLUGIN_VERSIONS_CATALOG = gql`
       name
       icon
       description
+<<<<<<< HEAD
       npm
       github
       website
@@ -101,6 +110,20 @@ export const GET_PLUGIN_VERSIONS_CATALOG = gql`
         deprecated
         version
         settings
+=======
+      taggedVersions
+      npm
+      github
+      website
+      versions(where: $where, orderBy: { createdAt: Desc }) {
+        id
+        pluginId
+        deprecated
+        isLatest
+        version
+        settings
+        configurations
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       }
     }
   }

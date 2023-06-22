@@ -26,7 +26,11 @@ const ProjectConfigurationSettingsPage: React.FC<{}> = () => {
           to={`/${currentWorkspace?.id}/${currentProject?.id}/${currentResource?.id}/settings/directories/update`}
           icon="settings"
         >
+<<<<<<< HEAD
           Base Directories
+=======
+          Base Directory
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         </InnerTabLink>
       </div>
     </div>

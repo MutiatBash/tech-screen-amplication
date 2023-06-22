@@ -22,4 +22,5 @@ class UserWhereUniqueInput {
   @Field(() => String)
   id!: string;
 }
-export { UserWhereUniqueInput };
+
+export { UserWhereUniqueInput as UserWhereUniqueInput };

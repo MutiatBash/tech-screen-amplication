@@ -5,18 +5,31 @@
 }
 
 .repository-actions {
+<<<<<<< HEAD
+=======
+  max-width: 800px;
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   &__auth {
     margin: var(--medium-spacing) 0;
     min-height: var(--min-height-of-banner);
     display: flex;
+<<<<<<< HEAD
     background: var(--black10);
+=======
+    background: var(--white);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   }
 
   &__wizard_auth {
     margin: var(--default-spacing-small) 0 var(--double-spacing) 0;
     min-height: var(--min-height-of-banner);
     display: flex;
+<<<<<<< HEAD
     background: transparent;
+=======
+    background: var(--white);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   }
   &__action {
     margin-left: var(--default-spacing-small);

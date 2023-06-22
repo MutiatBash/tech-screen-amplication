@@ -7,7 +7,10 @@ import { Snackbar } from "@amplication/ui/design-system";
 import { formatError } from "../util/error";
 import * as models from "../models";
 
+<<<<<<< HEAD
 import { useTracking } from "../util/analytics";
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 import { SYSTEM_DATA_TYPES } from "./constants";
 import EntityFieldForm, { Values } from "./EntityFieldForm";
 import {
@@ -17,7 +20,10 @@ import {
 import { DeleteEntityField } from "./DeleteEntityField";
 import "./EntityField.scss";
 import { AppContext } from "../context/appContext";
+<<<<<<< HEAD
 import { AnalyticsEventNames } from "../util/analytics-events.types";
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 type TData = {
   entity: models.Entity;
@@ -30,7 +36,10 @@ type UpdateData = {
 const CLASS_NAME = "entity-field";
 
 const EntityField = () => {
+<<<<<<< HEAD
   const { trackEvent } = useTracking();
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   const [lookupPendingData, setLookupPendingData] = useState<Values | null>(
     null
   );
@@ -86,11 +95,14 @@ const EntityField = () => {
       },
       onCompleted: (data) => {
         entity && addEntity(entity);
+<<<<<<< HEAD
         trackEvent({
           eventName: AnalyticsEventNames.EntityFieldUpdate,
           entityFieldName: data.updateEntityField.displayName,
           dataType: data.updateEntityField.dataType,
         });
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       },
     }
   );
@@ -224,6 +236,10 @@ const GET_ENTITY_FIELD = gql`
       name
       displayName
       pluralDisplayName
+<<<<<<< HEAD
+=======
+      customAttributes
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       fields(where: { id: { equals: $field } }) {
         id
         createdAt
@@ -235,6 +251,10 @@ const GET_ENTITY_FIELD = gql`
         required
         unique
         searchable
+<<<<<<< HEAD
+=======
+        customAttributes
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         description
         permanentId
       }
@@ -265,6 +285,10 @@ const UPDATE_ENTITY_FIELD = gql`
       required
       unique
       searchable
+<<<<<<< HEAD
+=======
+      customAttributes
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       description
     }
   }

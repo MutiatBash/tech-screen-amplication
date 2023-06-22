@@ -15,13 +15,22 @@
     flex: 1;
     flex-direction: column;
     justify-content: center;
+<<<<<<< HEAD
     padding: 6%;
     //It might be the case, that Alex wanted main block been centered, but there is padding 100px in Figma
     // align-items: center;
+=======
+    align-items: center;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   }
 
   &__right {
     background: var(--white);
+<<<<<<< HEAD
+=======
+    width: 80%;
+    padding-top: 100px;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   }
 
   &__description {
@@ -29,6 +38,10 @@
     align-items: flex-start;
     flex-direction: column;
     font-size: 14px;
+<<<<<<< HEAD
+=======
+    width: 73%;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
     &__header {
       @include title-24;

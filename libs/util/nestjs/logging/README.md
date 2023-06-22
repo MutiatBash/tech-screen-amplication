@@ -27,6 +27,16 @@ import { AmplicationLoggerModule } from '@amplication/util/nestjs/logging';
 export class AppModule implements // ....
 ```
 
+<<<<<<< HEAD
+=======
+The minimum log level can be configured also with the `LOG_LEVEL` environment variable, instead of the `logLevel: LogLevel.Warn`, to one of the following values:
+- `debug`
+- `info`
+- `warn`
+- `error`
+
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 ### Usage
 
 You can import the logger via dependency injection.

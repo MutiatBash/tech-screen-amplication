@@ -5,7 +5,11 @@ import React, {
   useEffect,
   useMemo,
 } from "react";
+<<<<<<< HEAD
 import { Button, EnumButtonStyle } from "@amplication/ui/design-system";
+=======
+import { Button, EnumButtonStyle, Icon } from "@amplication/ui/design-system";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 import { ResourceSettings } from "./wizard-pages/interfaces";
 import { Form, Formik, FormikErrors } from "formik";
 import { validate } from "../../util/formikValidateJsonSchema";
@@ -14,12 +18,20 @@ import WizardProgressBar from "./WizardProgressBar";
 import CreateServiceLoader from "./CreateServiceLoader";
 import { DefineUser } from "./CreateServiceWizard";
 import { AnalyticsEventNames } from "../../util/analytics-events.types";
+<<<<<<< HEAD
+=======
+import { useTracking } from "../../util/analytics";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 export type WizardStep = {
   index: number;
   hideFooter?: boolean;
   hideBackButton?: boolean;
   analyticsEventName: AnalyticsEventNames;
+<<<<<<< HEAD
+=======
+  stepName?: string;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 };
 
 interface ServiceWizardProps {
@@ -35,7 +47,13 @@ interface ServiceWizardProps {
   submitLoader: boolean;
   handleCloseWizard: (currentPage: string) => void;
   handleWizardProgress: (
+<<<<<<< HEAD
     dir: "next" | "prev",
+=======
+    eventName:
+      | AnalyticsEventNames.ServiceWizardStep_ContinueClicked
+      | AnalyticsEventNames.ServiceWizardStep_BackClicked,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     page: string,
     pageEventName: AnalyticsEventNames
   ) => void;
@@ -46,6 +64,7 @@ const BackButton: React.FC<{
   activePageIndex: number;
   hideBackButton?: boolean;
   goPrevPage: () => void;
+<<<<<<< HEAD
 }> = ({ hideBackButton, wizardPattern, activePageIndex, goPrevPage }) =>
   !hideBackButton &&
   activePageIndex !== wizardPattern[0] &&
@@ -54,14 +73,43 @@ const BackButton: React.FC<{
       Back
     </Button>
   ) : null;
+=======
+}> = ({ hideBackButton, wizardPattern, activePageIndex, goPrevPage }) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    goPrevPage();
+    event.currentTarget.blur();
+  };
+  if (
+    !hideBackButton &&
+    activePageIndex !== wizardPattern[0] &&
+    activePageIndex !== wizardPattern[wizardPattern.length - 1]
+  ) {
+    return (
+      <Button buttonStyle={EnumButtonStyle.Outline} onClick={handleClick}>
+        Back
+      </Button>
+    );
+  }
+  return null;
+};
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 const ContinueButton: React.FC<{
   goNextPage: () => void;
   disabled: boolean;
   buttonName: string;
 }> = ({ goNextPage, disabled, buttonName }) => {
+<<<<<<< HEAD
   return (
     <Button onClick={goNextPage} {...(disabled ? { disabled } : {})}>
+=======
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    goNextPage();
+    event.currentTarget.blur();
+  };
+  return (
+    <Button onClick={handleClick} {...(disabled ? { disabled } : {})}>
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       {buttonName}
     </Button>
   );
@@ -83,6 +131,10 @@ const ServiceWizard: React.FC<ServiceWizardProps> = ({
   handleWizardProgress,
   defineUser,
 }) => {
+<<<<<<< HEAD
+=======
+  const { trackEvent } = useTracking();
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   const wizardPattern = useMemo(() => {
     return wizardSteps.map((step) => step.index);
   }, [wizardSteps]);
@@ -112,6 +164,18 @@ const ServiceWizard: React.FC<ServiceWizardProps> = ({
   )[];
 
   const currentPage = pages[activePageIndex];
+<<<<<<< HEAD
+=======
+
+  useEffect(() => {
+    trackEvent({
+      eventName: wizardSteps[currWizardPatternIndex].analyticsEventName,
+      category: "Service Wizard",
+      WizardType: defineUser,
+    });
+  }, []);
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   const goNextPage = useCallback(() => {
     const wizardIndex =
       currWizardPatternIndex === wizardPattern.length - 1
@@ -122,8 +186,13 @@ const ServiceWizard: React.FC<ServiceWizardProps> = ({
     const newStep = wizardSteps.find((step) => step.index === nextIndex);
 
     handleWizardProgress(
+<<<<<<< HEAD
       "next",
       (pages[nextIndex].type as React.JSXElementConstructor<any>).name,
+=======
+      AnalyticsEventNames.ServiceWizardStep_ContinueClicked,
+      wizardSteps[currWizardPatternIndex].stepName,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       newStep.analyticsEventName
     );
     setActivePageIndex(nextIndex);
@@ -137,8 +206,13 @@ const ServiceWizard: React.FC<ServiceWizardProps> = ({
     const newStep = wizardSteps.find((step) => step.index === prevIndex);
 
     handleWizardProgress(
+<<<<<<< HEAD
       "prev",
       (pages[prevIndex].type as React.JSXElementConstructor<any>).name,
+=======
+      AnalyticsEventNames.ServiceWizardStep_BackClicked,
+      wizardSteps[currWizardPatternIndex].stepName,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       newStep.analyticsEventName
     );
     setActivePageIndex(prevIndex);
@@ -186,7 +260,12 @@ const ServiceWizard: React.FC<ServiceWizardProps> = ({
             )
           }
         >
+<<<<<<< HEAD
           x close
+=======
+          <Icon icon="close" size="xsmall"></Icon>
+          Close
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         </Button>
       )}
       <div className={`${moduleCss}__content`}>
@@ -262,11 +341,15 @@ const ServiceWizard: React.FC<ServiceWizardProps> = ({
                               : goNextPage
                           }
                           disabled={isInvalidStep}
+<<<<<<< HEAD
                           buttonName={
                             activePageIndex === submitFormPage
                               ? "Create Service"
                               : "Continue"
                           }
+=======
+                          buttonName={"Continue"}
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
                         />
                       )}
                     </div>

@@ -43,7 +43,11 @@ const SupportMenu = () => {
         Docs
       </a>
       <a
+<<<<<<< HEAD
         href="https://discord.gg/Z2CG3rUFnu"
+=======
+        href="https://amplication.com/discord"
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         target="community"
         rel="noopener"
         onClick={handleCommunityClick}

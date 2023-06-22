@@ -3,6 +3,10 @@ import * as models from "../models";
 import { EnumAuthProviderType } from "../models";
 import { DefineUser } from "./create-resource/CreateServiceWizard";
 import { TemplateSettings } from "./create-resource/wizardResourceSchema";
+<<<<<<< HEAD
+=======
+import { EnumGitProvider } from "../models";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 export const serviceSettingsFieldsInitValues = {
   generateAdminUI: true,
@@ -116,7 +120,12 @@ export function prepareServiceObject(
   wizardType: DefineUser,
   repoType: string,
   dbType: string,
+<<<<<<< HEAD
   auth: string
+=======
+  auth: string,
+  connectToDemoRepo: boolean
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   // gitOrganizationName: string
 ): models.ResourceCreateWithEntitiesInput {
   return {
@@ -150,7 +159,11 @@ export function prepareServiceObject(
     repoType,
     dbType,
     authType: auth,
+<<<<<<< HEAD
     // gitOrganizationName
+=======
+    connectToDemoRepo,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   };
 }
 
@@ -188,3 +201,13 @@ export const resourceThemeMap: {
     color: "#8DD9B9",
   },
 };
+<<<<<<< HEAD
+=======
+
+export const PROVIDERS_DISPLAY_NAME: {
+  [key in EnumGitProvider]: string;
+} = {
+  [EnumGitProvider.Github]: "GitHub",
+  [EnumGitProvider.Bitbucket]: "Bitbucket",
+};
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9

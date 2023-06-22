@@ -22,9 +22,17 @@ $max-width: 700px;
   }
 
   &__close {
+<<<<<<< HEAD
     position: absolute;
     top: 10px;
     right: 0;
+=======
+    color: var(--black80) !important;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    gap: 4px;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   }
 
   &__content {

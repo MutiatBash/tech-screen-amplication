@@ -43,7 +43,11 @@
       "options": {
         "buildTarget": "amplication-build-manager:build",
         "inspect": true,
+<<<<<<< HEAD
         "port": 9229
+=======
+        "port": 7010
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       },
       "configurations": {
         "production": {
@@ -51,7 +55,11 @@
         }
       }
     },
+<<<<<<< HEAD
     "docker:build": {
+=======
+    "package:container": {
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       "executor": "@nx-tools/nx-container:build",
       "options": {
         "push": false,
@@ -64,7 +72,11 @@
         }
       }
     },
+<<<<<<< HEAD
     "deploy": {
+=======
+    "deploy:container": {
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       "executor": "nx:run-commands"
     }
   },

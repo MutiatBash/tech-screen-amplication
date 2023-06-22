@@ -18,6 +18,10 @@ import { PromoBanner } from "./PromoBanner";
 import { ApolloError, useMutation } from "@apollo/client";
 import { PROVISION_SUBSCRIPTION } from "../Workspaces/queries/workspaceQueries";
 import { PurchaseLoader } from "./PurchaseLoader";
+<<<<<<< HEAD
+=======
+import { FAQ } from "./FAQ";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 export type DType = {
   provisionSubscription: models.ProvisionSubscriptionResult;
@@ -171,6 +175,10 @@ const PurchasePage = (props) => {
         <div className={`${CLASS_NAME}__header`}>
           Pick the perfect plan for your needs
         </div>
+<<<<<<< HEAD
+=======
+        <PromoBanner />
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         <Paywall
           textOverrides={{
             entitlementsTitle: (plan) => {
@@ -222,6 +230,10 @@ const PurchasePage = (props) => {
             Contact Us
           </Button>
         </div>
+<<<<<<< HEAD
+=======
+        <FAQ />
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         <div className={`${CLASS_NAME}__footer`}>
           <div className={`${CLASS_NAME}__footer__copyright`}>
             ©2022 amplication

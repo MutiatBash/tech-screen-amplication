@@ -16,6 +16,10 @@ import { useTracking } from "../util/analytics";
 import DarkModeToggle from "./DarkModeToggle";
 import "./MainLayout.scss";
 import { AnalyticsEventNames } from "../util/analytics-events.types";
+<<<<<<< HEAD
+=======
+import { NX_REACT_APP_AUTH_LOGOUT_URI } from "../env";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 type Props = {
   children: React.ReactNode;
@@ -52,11 +56,18 @@ const Menu = ({ children }: MenuProps) => {
   }, [history]);
 
   const handleSignOut = useCallback(() => {
+<<<<<<< HEAD
     /**@todo: sign out on server */
     unsetToken();
     apolloClient.clearStore();
 
     history.replace("/");
+=======
+    unsetToken();
+    apolloClient.clearStore();
+
+    window.location.replace(NX_REACT_APP_AUTH_LOGOUT_URI);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   }, [history, apolloClient]);
 
   const handleSupportClick = useCallback(() => {

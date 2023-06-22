@@ -21,6 +21,7 @@ import { ProvisionSubscriptionResult } from "../workspace/dto/ProvisionSubscript
 import { ValidationError } from "../../errors/ValidationError";
 import { FeatureUsageReport } from "../project/FeatureUsageReport";
 import { ProvisionSubscriptionInput } from "../workspace/dto/ProvisionSubscriptionInput";
+import { User } from "../../models";
 
 @Injectable()
 export class BillingService {
@@ -56,8 +57,10 @@ export class BillingService {
             this.logger.info("Successfully initialized Stigg provider");
           })
           .catch((reason) => {
-            this.logger.error("failed to initialize Stigg", { reason });
-            this.logger.error("Disabling billing module");
+            this.logger.error(
+              "Failed to initialize Stigg. Disabling billing module",
+              reason
+            );
             this.stiggClient.close();
             this.billingEnabled = false;
           });
@@ -67,8 +70,10 @@ export class BillingService {
         );
       }
     } catch (error) {
-      this.logger.error("failed to initialize Stigg", { error });
-      this.logger.error("Disabling billing module");
+      this.logger.error(
+        "Failed to initialize Stigg. Disabling billing module",
+        error
+      );
       this.billingEnabled = false;
     }
   }
@@ -78,9 +83,8 @@ export class BillingService {
       if (this.isBillingEnabled) {
         return this.stiggClient;
       }
-      return null;
-    } catch (err) {
-      this.logger.error(err);
+    } catch (error) {
+      this.logger.error(error.message, error);
     }
   }
 
@@ -99,7 +103,7 @@ export class BillingService {
         });
       }
     } catch (error) {
-      this.logger.error(error);
+      this.logger.error(error.message, error);
     }
   }
 
@@ -126,7 +130,7 @@ export class BillingService {
         });
       }
     } catch (error) {
-      this.logger.error(error);
+      this.logger.error(error.message, error);
     }
   }
 
@@ -143,7 +147,7 @@ export class BillingService {
         });
       }
     } catch (error) {
-      this.logger.error(error);
+      this.logger.error(error.message, error);
     }
   }
 
@@ -160,7 +164,7 @@ export class BillingService {
         });
       }
     } catch (error) {
-      this.logger.error(error);
+      this.logger.error(error.message, error);
     }
   }
 
@@ -177,7 +181,7 @@ export class BillingService {
         });
       }
     } catch (error) {
-      this.logger.error(error);
+      this.logger.error(error.message, error);
     }
   }
 
@@ -251,7 +255,7 @@ export class BillingService {
         return null;
       }
     } catch (error) {
-      this.logger.error(error);
+      this.logger.error(error.message, error);
       return null; //on any exception, use free plan
     }
   }
@@ -275,7 +279,8 @@ export class BillingService {
 
   //todo: wrap with a try catch and return an object with the details about the limitations
   async validateSubscriptionPlanLimitationsForWorkspace(
-    workspaceId: string
+    workspaceId: string,
+    currentUser: User
   ): Promise<void> {
     if (this.isBillingEnabled) {
       const isIgnoreValidationCodeGeneration = await this.getBooleanEntitlement(
@@ -291,9 +296,18 @@ export class BillingService {
         );
 
         if (!servicesEntitlement.hasAccess) {
-          throw new ValidationError(
-            `LimitationError: Allowed services per workspace: ${servicesEntitlement.usageLimit}`
-          );
+          const message = `Allowed services per workspace: ${servicesEntitlement.usageLimit}`;
+
+          await this.analytics.track({
+            userId: currentUser.account.id,
+            properties: {
+              workspaceId,
+              reason: message,
+            },
+            event: EnumEventType.SubscriptionLimitPassed,
+          });
+
+          throw new ValidationError(`LimitationError: ${message}`);
         }
 
         const servicesAboveEntitiesPerServiceLimitEntitlement =
@@ -310,10 +324,18 @@ export class BillingService {
             );
 
           const entitiesPerServiceLimit = entitiesPerServiceEntitlement.value;
+          const message = `Allowed entities per service: ${entitiesPerServiceLimit}`;
 
-          throw new ValidationError(
-            `LimitationError: Allowed entities per service: ${entitiesPerServiceLimit}`
-          );
+          await this.analytics.track({
+            userId: currentUser.account.id,
+            properties: {
+              workspaceId,
+              reason: message,
+            },
+            event: EnumEventType.SubscriptionLimitPassed,
+          });
+
+          throw new ValidationError(`LimitationError: ${message}`);
         }
       }
     }

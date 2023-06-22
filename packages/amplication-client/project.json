@@ -6,6 +6,11 @@
   "targets": {
     "prebuild": {
       "executor": "nx:run-commands",
+<<<<<<< HEAD
+=======
+      "inputs": ["{workspaceRoot}/package.json"],
+      "outputs": ["{projectRoot}/src/util/version.ts"],
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       "options": {
         "command": "ts-node ./scripts/update-version.ts",
         "cwd": "packages/amplication-client"
@@ -52,11 +57,46 @@
           "sourceMap": true,
           "vendorChunk": true
         },
+<<<<<<< HEAD
+=======
+        "sandbox": {
+          "fileReplacements": [
+            {
+              "replace": "packages/amplication-client/src/environments/environment.ts",
+              "with": "packages/amplication-client/src/environments/environment.sandbox.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": true
+        },
+        "staging": {
+          "fileReplacements": [
+            {
+              "replace": "packages/amplication-client/src/environments/environment.ts",
+              "with": "packages/amplication-client/src/environments/environment.staging.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": true
+        },
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         "production": {
           "fileReplacements": [
             {
               "replace": "packages/amplication-client/src/environments/environment.ts",
+<<<<<<< HEAD
               "with": "packages/amplication-client/src/environments/environment.prod.ts"
+=======
+              "with": "packages/amplication-client/src/environments/environment.production.ts"
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
             }
           ],
           "optimization": true,
@@ -103,11 +143,16 @@
         "passWithNoTests": true
       }
     },
+<<<<<<< HEAD
     "docker:build": {
+=======
+    "package:container": {
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       "executor": "@nx-tools/nx-container:build",
       "options": {
         "push": false,
         "tags": ["amplication/client:latest"],
+<<<<<<< HEAD
         "build-args": ["GIT_REF_NAME=latest-local", "GIT_SHA=unicorn-🦄-sha"]
       },
       "configurations": {
@@ -117,6 +162,52 @@
       }
     },
     "deploy": { "executor": "nx:run-commands" }
+=======
+        "build-args": []
+      },
+      "configurations": {
+        "production": {
+          "build-args": []
+        }
+      }
+    },
+    "deploy:static": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build amplication-client",
+          "aws s3 sync ./dist/packages/amplication-client s3://{args.bucket-name} --delete",
+          "aws cloudfront create-invalidation --distribution-id '{args.distribution-id}'  --paths '/*'"
+        ],
+        "forwardAllArgs": false,
+        "parallel": false
+      },
+      "configurations": {
+        "sandbox": {
+          "commands": [
+            "nx build amplication-client --configuration=sandbox",
+            "aws s3 sync ./dist/packages/amplication-client s3://{args.bucket-name} --delete",
+            "aws cloudfront create-invalidation --distribution-id '{args.distribution-id}'  --paths '/*'"
+          ]
+        },
+        "staging": {
+          "commands": [
+            "nx build amplication-client --configuration=staging",
+            "aws s3 sync ./dist/packages/amplication-client s3://{args.bucket-name} --delete",
+            "aws cloudfront create-invalidation --distribution-id '{args.distribution-id}'  --paths '/*'"
+          ]
+        },
+        "production": {
+          "commands": [
+            "nx build amplication-client --configuration=production",
+            "aws s3 sync ./dist/packages/amplication-client s3://{args.bucket-name} --delete",
+            "aws cloudfront create-invalidation --distribution-id '{args.distribution-id}'  --paths '/*'"
+          ]
+        }
+      }
+    },
+    "deploy:container": { "executor": "nx:run-commands" }
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   "tags": []
 }

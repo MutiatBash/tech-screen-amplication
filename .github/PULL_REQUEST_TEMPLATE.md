@@ -21,6 +21,11 @@ Close: #[issue-number]
 
 <!-- Explain the details for making this change. What existing problem does the pull request solve? -->
 
+<<<<<<< HEAD
+=======
+copilot:all
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 ## PR Checklist
 
 - [ ] Tests for the changes have been added

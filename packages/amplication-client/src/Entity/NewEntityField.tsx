@@ -6,8 +6,11 @@ import { useCallback, useContext, useState } from "react";
 import { Button, EnumButtonStyle } from "../Components/Button";
 import { AppContext } from "../context/appContext";
 import * as models from "../models";
+<<<<<<< HEAD
 import { useTracking } from "../util/analytics";
 import { AnalyticsEventNames } from "../util/analytics-events.types";
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 import { formatError } from "../util/error";
 import "./NewEntityField.scss";
 
@@ -27,7 +30,10 @@ const INITIAL_VALUES = {
 const CLASS_NAME = "new-entity-field";
 
 const NewEntityField = ({ entity, onFieldAdd }: Props) => {
+<<<<<<< HEAD
   const { trackEvent } = useTracking();
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   const { addEntity } = useContext(AppContext);
   const [autoFocus, setAutoFocus] = useState<boolean>(false);
 
@@ -71,11 +77,14 @@ const NewEntityField = ({ entity, onFieldAdd }: Props) => {
       },
       onCompleted: (data) => {
         addEntity(entity.id);
+<<<<<<< HEAD
         trackEvent({
           eventName: AnalyticsEventNames.EntityFieldCreate,
           entityFieldName: data.createEntityFieldByDisplayName.displayName,
           dataType: data.createEntityFieldByDisplayName.dataType,
         });
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       },
       errorPolicy: "none",
     }
@@ -156,6 +165,10 @@ const CREATE_ENTITY_FIELD = gql`
       required
       unique
       searchable
+<<<<<<< HEAD
+=======
+      customAttributes
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       description
       properties
     }
@@ -171,6 +184,10 @@ const NEW_ENTITY_FIELD_FRAGMENT = gql`
     required
     unique
     searchable
+<<<<<<< HEAD
+=======
+    customAttributes
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     description
     properties
   }

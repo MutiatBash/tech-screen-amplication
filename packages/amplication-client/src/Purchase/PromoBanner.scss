@@ -3,12 +3,16 @@
   align-items: center;
   width: 924px;
   height: 300px;
+<<<<<<< HEAD
   background-image: url("../assets/images/promo.png");
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   background-size: cover;
   margin-bottom: 40px;
   border: 3px solid var(--black100);
   box-shadow: 0px 36px 38px -19px rgba(9, 11, 20, 0.7);
   border-radius: 8px;
+<<<<<<< HEAD
 
   &__content {
     display: flex;
@@ -65,4 +69,6 @@
       }
     }
   }
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 }

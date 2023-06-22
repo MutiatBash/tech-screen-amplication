@@ -46,6 +46,11 @@ const InstalledPluginSettings: React.FC<Props> = ({
     useContext(AppContext);
   const editorRef: React.MutableRefObject<string | null> = useRef();
   const [isValid, setIsValid] = useState<boolean>(true);
+<<<<<<< HEAD
+=======
+  const [configurations, setConfiguration] = useState<string>();
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   const [resetKey, setResetKey] = useState<string>();
 
   const {
@@ -65,6 +70,19 @@ const InstalledPluginSettings: React.FC<Props> = ({
     );
   }, [pluginInstallation?.PluginInstallation.settings]);
 
+<<<<<<< HEAD
+=======
+  useEffect(() => {
+    setConfiguration(pluginInstallation?.PluginInstallation.configurations);
+  }, [pluginInstallation?.PluginInstallation.configurations]);
+
+  useEffect(() => {
+    if (pluginInstallation && !selectedVersion) {
+      setSelectedVersion(pluginInstallation.PluginInstallation.version);
+    }
+  }, [pluginInstallation?.PluginInstallation.version]);
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   const plugin = useMemo(() => {
     return (
       pluginInstallation &&
@@ -91,20 +109,36 @@ const InstalledPluginSettings: React.FC<Props> = ({
       pluginInstallation?.PluginInstallation.version !==
         pluginVersion.version && setIsValid(false);
       editorRef.current = pluginVersion.settings;
+<<<<<<< HEAD
     },
     [setSelectedVersion, setIsValid]
+=======
+      setConfiguration(pluginVersion.configurations);
+    },
+    [setSelectedVersion, setIsValid, setConfiguration]
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   );
 
   const handlePluginInstalledSave = useCallback(() => {
     if (!pluginInstallation) return;
+<<<<<<< HEAD
 
     const { enabled, id } = pluginInstallation.PluginInstallation;
+=======
+    const { enabled, id } = pluginInstallation.PluginInstallation;
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     updatePluginInstallation({
       variables: {
         data: {
           enabled,
           version: selectedVersion,
+<<<<<<< HEAD
           settings: JSON.parse(editorRef.current),
+=======
+          settings: editorRef.current || JSON.parse("{}"),
+          configurations: configurations || JSON.parse("{}"),
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         },
         where: {
           id: id,

@@ -1,12 +1,19 @@
 import { Logger } from "./logging";
 import { LoggerOptions, LogLevel } from "./types";
 import { format } from "winston";
+<<<<<<< HEAD
 import { Colorizer, Format } from "logform";
 import { customFormat } from "./cli-format";
 
 const FORMAT_COLORIZE = "colorize";
 const FORMAT_ERRORS = "errors";
 const FORMAT_SIMPLE = "simple";
+=======
+import { Format } from "logform";
+
+const FORMAT_ERRORS = "errors";
+const FORMAT_SPLAT = "splat";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 const FORMAT_JSON = "json";
 const FORMAT_TIMESTAMP = "timestamp";
 
@@ -20,6 +27,12 @@ describe("getLoggerFormat", () => {
       .spyOn(format, "combine")
       .mockReturnValue({} as unknown as Format);
     jest
+<<<<<<< HEAD
+=======
+      .spyOn(format, "splat")
+      .mockReturnValue(FORMAT_SPLAT as unknown as Format);
+    jest
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       .spyOn(format, "errors")
       .mockReturnValue(FORMAT_ERRORS as unknown as Format);
 
@@ -50,8 +63,13 @@ describe("getLoggerFormat", () => {
     new Logger(options);
 
     expect(spyOnCombineFormat).toHaveBeenCalledWith(
+<<<<<<< HEAD
       FORMAT_ERRORS,
       FORMAT_TIMESTAMP,
+=======
+      FORMAT_TIMESTAMP,
+      FORMAT_ERRORS,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       { template: expect.any(Function) }
     );
   });
@@ -61,8 +79,13 @@ describe("getLoggerFormat", () => {
     new Logger(options);
 
     expect(spyOnCombineFormat).toHaveBeenCalledWith(
+<<<<<<< HEAD
       FORMAT_ERRORS,
       FORMAT_TIMESTAMP,
+=======
+      FORMAT_TIMESTAMP,
+      FORMAT_ERRORS,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       FORMAT_JSON
     );
   });

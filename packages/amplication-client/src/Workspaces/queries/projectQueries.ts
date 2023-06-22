@@ -18,6 +18,8 @@ export const GET_PROJECTS = gql`
     projects {
       id
       name
+      useDemoRepo
+      demoRepoName
       resources {
         id
         name
@@ -25,7 +27,11 @@ export const GET_PROJECTS = gql`
         gitRepository {
           id
           name
+          groupName
           gitOrganizationId
+          gitOrganization {
+            provider
+          }
         }
       }
       createdAt

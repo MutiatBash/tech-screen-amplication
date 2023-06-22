@@ -25,7 +25,11 @@ export type LabelDescriptionSelectorProps = {
   description: string;
   subDescription?: string;
   icon?: string;
+<<<<<<< HEAD
   image?: string;
+=======
+  image?: string | JSX.Element | React.ReactElement<any, any>;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   imageSize?: string;
   customClassName?: string;
   onClick: (name) => void;
@@ -65,6 +69,7 @@ export const LabelDescriptionSelector: React.FC<
         </CreateServiceCircleBadge>
       )}
 
+<<<<<<< HEAD
       {image && (
         <CreateServiceCircleBadge>
           <img
@@ -74,6 +79,9 @@ export const LabelDescriptionSelector: React.FC<
           />
         </CreateServiceCircleBadge>
       )}
+=======
+      {image && <CreateServiceCircleBadge>{image}</CreateServiceCircleBadge>}
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
       <label>{label}</label>
       {subDescription && (

@@ -42,15 +42,17 @@ model Workspace {
 }
 
 model Project {
-  id          String     @id @default(cuid())
-  name        String
-  workspaceId String
-  workspace   Workspace  @relation(fields: [workspaceId], references: [id], onDelete: NoAction, onUpdate: Cascade)
-  resources   Resource[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  deletedAt   DateTime?
-  commits     Commit[]
+  id           String     @id @default(cuid())
+  name         String
+  workspaceId  String
+  workspace    Workspace  @relation(fields: [workspaceId], references: [id], onDelete: NoAction, onUpdate: Cascade)
+  resources    Resource[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  deletedAt    DateTime?
+  commits      Commit[]
+  useDemoRepo  Boolean    @default(false)
+  demoRepoName String?
 
   @@unique([workspaceId, name])
 }
@@ -75,6 +77,7 @@ model GitOrganization {
 model GitRepository {
   id                String          @id @default(cuid())
   name              String
+  groupName         String?
   createdAt         DateTime        @default(now())
   updatedAt         DateTime        @updatedAt
   gitOrganizationId String
@@ -194,6 +197,7 @@ model Entity {
   displayName       String
   pluralDisplayName String
   description       String?
+  customAttributes  String?
   lockedByUserId    String?
   lockedAt          DateTime?
   deletedAt         DateTime?
@@ -216,6 +220,7 @@ model EntityVersion {
   displayName       String
   pluralDisplayName String
   description       String?
+  customAttributes  String?
   commitId          String?
   deleted           Boolean?
   commit            Commit?            @relation(fields: [commitId], references: [id])
@@ -264,22 +269,23 @@ model EntityPermissionField {
 }
 
 model EntityField {
-  id              String                  @id @default(cuid())
-  createdAt       DateTime                @default(now())
-  updatedAt       DateTime                @updatedAt
-  entityVersionId String
-  permanentId     String                  @default(cuid())
-  name            String
-  displayName     String
-  dataType        EnumDataType
-  properties      Json
-  required        Boolean
-  searchable      Boolean
-  description     String
-  position        Int?
-  unique          Boolean                 @default(false)
-  entityVersion   EntityVersion           @relation(fields: [entityVersionId], references: [id], onDelete: Cascade)
-  permissionField EntityPermissionField[]
+  id               String                  @id @default(cuid())
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
+  entityVersionId  String
+  permanentId      String                  @default(cuid())
+  name             String
+  displayName      String
+  dataType         EnumDataType
+  properties       Json
+  required         Boolean
+  searchable       Boolean
+  customAttributes String?
+  description      String
+  position         Int?
+  unique           Boolean                 @default(false)
+  entityVersion    EntityVersion           @relation(fields: [entityVersionId], references: [id], onDelete: Cascade)
+  permissionField  EntityPermissionField[]
 
   @@unique([entityVersionId, displayName], map: "EntityField.entityVersionId_displayName_unique")
   @@unique([entityVersionId, name], map: "EntityField.entityVersionId_name_unique")

@@ -2,6 +2,13 @@
 
 @import "../style/index.scss";
 
+<<<<<<< HEAD
+=======
+:root {
+  --white-overlay-background: #ffffff99;
+}
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 $info-panel-height: 180px;
 $application-badge-size-large: 100px;
 $app-icon-large-font-size: 70px;
@@ -28,6 +35,22 @@ $circle-badge-border: 2px;
     align-items: center;
     justify-content: center;
   }
+<<<<<<< HEAD
+=======
+  &__header:hover::before {
+    z-index: 1;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--white-overlay-background);
+  }
+  .circle-badge-container {
+    z-index: 10;
+  }
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
   .circle-badge {
     width: $application-badge-size-large;

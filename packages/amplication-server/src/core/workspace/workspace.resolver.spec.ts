@@ -70,6 +70,8 @@ const EXAMPLE_PROJECT: Project = {
   name: EXAMPLE_RESOURCE_NAME,
   createdAt: timeNow,
   updatedAt: timeNow,
+  useDemoRepo: false,
+  demoRepoName: null,
 };
 
 const GET_WORKSPACE_QUERY = gql`
@@ -91,6 +93,8 @@ const GET_PROJECT_QUERY = gql`
         name
         createdAt
         updatedAt
+        useDemoRepo
+        demoRepoName
       }
     }
   }

@@ -12,6 +12,7 @@ const ResourceName = {
 };
 
 const GitRepository = {
+<<<<<<< HEAD
   properties: {
     gitOrganizationId: {
       type: "string",
@@ -31,6 +32,36 @@ const GitRepository = {
     },
   },
   required: ["gitOrganizationId", "gitRepositoryName"],
+=======
+  anyOf: [
+    {
+      properties: {
+        gitOrganizationId: {
+          type: "string",
+          minLength: 2,
+        },
+        gitRepositoryName: {
+          type: "string",
+          minLength: 2,
+        },
+        gitRepositoryUrl: {
+          type: "string",
+          minLength: 2,
+        },
+        isOverrideGitRepository: {
+          type: "boolean",
+          default: false,
+        },
+      },
+      required: ["gitOrganizationId", "gitRepositoryName"],
+    },
+    {
+      properties: {
+        connectToDemoRepo: { const: true },
+      },
+    },
+  ],
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 };
 
 const codeGeneration = {
@@ -140,10 +171,19 @@ export const ResourceInitialValues = {
   generateRestApi: true,
   isGenerateCompleted: null,
   structureType: "Mono",
+<<<<<<< HEAD
   baseDir: "apps",
   databaseType: "postgres",
   templateType: "empty",
   authType: "core",
+=======
+  baseDir: "./apps",
+  databaseType: "postgres",
+  templateType: "empty",
+  authType: "core",
+  gitProvider: null,
+  connectToDemoRepo: false,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 };
 
 export interface WizardProgressBarInterface {

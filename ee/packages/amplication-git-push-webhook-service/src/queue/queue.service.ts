@@ -62,7 +62,12 @@ export class QueueService {
       );
     } catch (error) {
       this.logger.error(
+<<<<<<< HEAD
         `failed to push message to kafka: method: createPushRequest, error: ${error}`,
+=======
+        `failed to push message to kafka: method: createPushRequest`,
+        error,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         { class: QueueService.name, messageId },
       );
     }

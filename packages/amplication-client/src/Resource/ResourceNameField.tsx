@@ -36,6 +36,10 @@ const FORM_SCHEMA = {
 const ResourceNameField = ({ currentResource, resourceId }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [showTick, setShowTick] = useState(false);
+<<<<<<< HEAD
+=======
+  const [hovered, setHovered] = useState(false);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
   const { trackEvent } = useTracking();
   const [updateResource] = useMutation<TData>(UPDATE_RESOURCE, {
@@ -50,6 +54,10 @@ const ResourceNameField = ({ currentResource, resourceId }: Props) => {
     if (isValid) {
       setIsEditing(false);
       setShowTick(false);
+<<<<<<< HEAD
+=======
+      setHovered(false);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     }
   };
 
@@ -75,6 +83,16 @@ const ResourceNameField = ({ currentResource, resourceId }: Props) => {
     [updateResource, resourceId, trackEvent]
   );
 
+<<<<<<< HEAD
+=======
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   return (
     <div className={`${CLASS_NAME}__input__container`}>
       <Formik
@@ -120,12 +138,30 @@ const ResourceNameField = ({ currentResource, resourceId }: Props) => {
                   )}
                 </Form>
               ) : (
+<<<<<<< HEAD
                 <span
                   className={`${CLASS_NAME}__text`}
                   onClick={() => setIsEditing(true)}
                 >
                   {currentResource?.name}
                 </span>
+=======
+                <div
+                  className={`${CLASS_NAME}__edit`}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <span className={`${CLASS_NAME}__text`}>
+                    {currentResource?.name}
+                  </span>
+                  <div
+                    onClick={() => setIsEditing(true)}
+                    className={`${CLASS_NAME}__edit_icon`}
+                  >
+                    {hovered && <Icon icon="edit_2" size="medium" />}
+                  </div>
+                </div>
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
               )}
             </div>
           );

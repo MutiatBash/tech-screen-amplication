@@ -10,6 +10,7 @@ export enum AnalyticsEventNames {
   ApiTokenCreate = "createApiToken",
   SignInWithGitHub = "signInWithGitHub",
   SignInWithUserName = "signInWithUserName",
+  ContinueWithSSOClick = "continueWithSSOClick",
 
   // account
   AccountInfoUpdate = "updateAccountInfo",
@@ -59,10 +60,6 @@ export enum AnalyticsEventNames {
   ServiceCreate = "createResourceClick-Service",
 
   // entity
-  EntityCreate = "createEntity",
-  EntityUpdate = "updateEntity",
-  EntityFieldCreate = "createEntityField",
-  EntityFieldUpdate = "updateEntityField",
   RelatedEntityFix = "fixRelatedEntity",
   EntitiesTileClick = "entitiesTileClick",
 
@@ -83,7 +80,7 @@ export enum AnalyticsEventNames {
   TopicsSearch = "topicsSearch",
 
   // commit & build & pending changes
-  CommitCreate = "commit",
+  CommitClicked = "commitClicked",
   CommitListBuildIdClick = "commitListBuildIdClick",
   LastCommitIdClick = "lastCommitIdClick",
   PendingChangesDiscard = "discardPendingChanges",
@@ -104,6 +101,8 @@ export enum AnalyticsEventNames {
   CreateService = "CreateService",
   CreateMessageBroker = "CreateMessageBroker",
   CreateProjectConfiguration = "CreateProjectConfiguration",
+  StarUsBannerCTAClick = "StarUsBannerCTAClick",
+  StarUsBannerClose = "StarUsBannerClose",
 
   // new event for startAuthResourceWithGitHub
   AddGitProviderClick = "addGitProviderClick",
@@ -111,7 +110,6 @@ export enum AnalyticsEventNames {
   // Purchase Page
   PricingPageClose = "PricingPageClose",
   PricingPageCTAClick = "PricingPageCTAClick",
-  PassedLimitsNotificationView = "PassedLimitsNotificationView",
   PassedLimitsNotificationClose = "PassedLimitsNotificationClose",
   PricingPageChangeBillingCycle = "PricingPageChangeBillingCycle",
   UpgradeOnResourceListClick = "UpgradeOnResourceListClick",
@@ -145,4 +143,8 @@ export enum AnalyticsEventNames {
   ServiceWizardStep_BackClicked = "ServiceWizardStep_BackClicked",
   ServiceWizardStep_CloseClicked = "ServiceWizardStep_CloseClicked",
   ServiceWizardStep_Finish_CTAClicked = "ServiceWizardStep_Finish_CTAClicked",
+  ServiceWizardStep_CloseClick = "ServiceWizardStep_CloseClick",
+  ViewServiceWizardError = "ViewServiceWizardError",
+  ServiceWizardError_TryAgain = "ServiceWizardError_TryAgain",
+  ServiceWizardError_Continue = "ServiceWizardError_Continue",
 }

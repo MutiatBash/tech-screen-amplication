@@ -2,7 +2,11 @@ import React, { useMemo } from "react";
 import { Formik, FormikErrors } from "formik";
 import { omit, isEmpty } from "lodash";
 import { getSchemaForDataType } from "@amplication/code-gen-types";
+<<<<<<< HEAD
 import { ToggleField } from "@amplication/ui/design-system";
+=======
+import { TextField, ToggleField } from "@amplication/ui/design-system";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 import * as models from "../models";
 import { DisplayNameField } from "../Components/DisplayNameField";
 import { Form } from "../Components/Form";
@@ -22,6 +26,10 @@ export type Values = {
   unique: boolean;
   required: boolean;
   searchable: boolean;
+<<<<<<< HEAD
+=======
+  customAttributes: string | null;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   description: string | null;
   permanentId?: string | null;
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -63,6 +71,10 @@ export const INITIAL_VALUES: Values = {
   unique: false,
   required: false,
   searchable: false,
+<<<<<<< HEAD
+=======
+  customAttributes: null,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   description: "",
   properties: {},
 };
@@ -85,12 +97,15 @@ const EntityFieldForm = ({
     };
   }, [defaultValues]);
 
+<<<<<<< HEAD
   function onKeyDown(keyEvent: any) {
     if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
       keyEvent.preventDefault();
     }
   }
 
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   return (
     <Formik
       initialValues={initialValues}
@@ -124,7 +139,11 @@ const EntityFieldForm = ({
         const schema = getSchemaForDataType(formik.values.dataType);
 
         return (
+<<<<<<< HEAD
           <Form childrenAsBlocks onKeyDown={onKeyDown}>
+=======
+          <Form childrenAsBlocks>
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
             <FormikAutoSave debounceMS={1000} />
 
             <DisplayNameField
@@ -173,6 +192,19 @@ const EntityFieldForm = ({
               resourceId={resourceId}
               entity={entity}
             />
+<<<<<<< HEAD
+=======
+
+            <TextField
+              autoComplete="off"
+              disabled={isSystemDataType}
+              placeholder='Add custom attributes to fields using the format @attribute([parameters]) or @attribute. For example: @map(name: "fieldName") @unique @default(value)'
+              textarea
+              rows={3}
+              name="customAttributes"
+              label="Custom Attributes"
+            />
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
           </Form>
         );
       }}

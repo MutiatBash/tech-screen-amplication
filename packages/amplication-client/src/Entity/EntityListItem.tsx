@@ -28,6 +28,10 @@ type Props = {
   onDelete?: () => void;
   onError: (error: Error) => void;
   relatedEntities: models.Entity[];
+<<<<<<< HEAD
+=======
+  isUserEntityMandatory: boolean;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 };
 
 const CLASS_NAME = "entity-list-item";
@@ -38,6 +42,10 @@ export const EntityListItem = ({
   onDelete,
   onError,
   relatedEntities,
+<<<<<<< HEAD
+=======
+  isUserEntityMandatory,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 }: Props) => {
   const { addEntity, currentWorkspace, currentProject } =
     useContext(AppContext);
@@ -99,6 +107,21 @@ export const EntityListItem = ({
 
   const [latestVersion] = entity.versions || [];
 
+<<<<<<< HEAD
+=======
+  const isUserEntity = entity.name === USER_ENTITY;
+
+  const isDeleteButtonDisable = isUserEntity && isUserEntityMandatory;
+
+  const deleteMessage = isUserEntity
+    ? "Deleting this entity may impact the authentication functionality of your service"
+    : "you want to delete this entity?";
+
+  const deleteMessageConfirmation = isUserEntity ? "Notice:" : "Are you sure";
+
+  const deleteClassName = isUserEntity ? "__alert-bold-notice" : "__alert-bold";
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   return (
     <>
       <ConfirmationDialog
@@ -108,8 +131,15 @@ export const EntityListItem = ({
         dismissButton={DISMISS_BUTTON}
         message={
           <span>
+<<<<<<< HEAD
             <span className={`${CLASS_NAME}__alert-bold`}>Are you sure</span>{" "}
             you want to delete this entity?
+=======
+            <span className={`${CLASS_NAME}${deleteClassName}`}>
+              {deleteMessageConfirmation}
+            </span>{" "}
+            {deleteMessage}
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
             <br />
             {relatedEntities.length > 0 && (
               <ConfirmationDialogFieldList relatedEntities={relatedEntities} />
@@ -138,11 +168,19 @@ export const EntityListItem = ({
           )}
 
           <span className="spacer" />
+<<<<<<< HEAD
           {!deleteLoading && entity.name !== USER_ENTITY && (
+=======
+          {!deleteLoading && (
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
             <Button
               buttonStyle={EnumButtonStyle.Text}
               icon="trash_2"
               onClick={handleDelete}
+<<<<<<< HEAD
+=======
+              disabled={isDeleteButtonDisable}
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
             />
           )}
         </div>

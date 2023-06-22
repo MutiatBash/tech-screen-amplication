@@ -7,7 +7,10 @@
   &__newConnectionBox {
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     align-items: flex-start;
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     gap: 8px;
     width: 552px;
   }
@@ -33,6 +36,7 @@
     gap: 8px;
   }
 
+<<<<<<< HEAD
   &__selectOrganization {
     font-size: 10px;
     line-height: 15px;
@@ -40,6 +44,8 @@
     margin-bottom: 4px;
   }
 
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   .toggle-field {
     margin: 0;
   }

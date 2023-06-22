@@ -1,4 +1,10 @@
 .resource-namefield {
+<<<<<<< HEAD
+=======
+  &__input__container {
+    z-index: 10;
+  }
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   &__form {
     display: flex;
     flex-direction: column;
@@ -12,9 +18,13 @@
     font-size: inherit;
     font-family: inherit;
   }
+<<<<<<< HEAD
   &__text:hover {
     cursor: pointer;
   }
+=======
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   &__saved {
     color: var(--positive-default);
   }
@@ -27,6 +37,21 @@
     background-color: var(--white);
     color: var(--black100);
   }
+<<<<<<< HEAD
+=======
+  &__edit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__edit_icon {
+    cursor: pointer;
+    position: relative;
+    top: 2px;
+    left: 5px;
+  }
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 }
 
 .amplication-label__error {

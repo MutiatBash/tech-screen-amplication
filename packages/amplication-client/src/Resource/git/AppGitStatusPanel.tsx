@@ -29,6 +29,10 @@ const AppGitStatusPanel = ({ resource, showDisconnectedMessage }: Props) => {
     currentProject,
     gitRepositoryUrl,
     gitRepositoryFullName,
+<<<<<<< HEAD
+=======
+    gitRepositoryOrganizationProvider,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   } = useContext(AppContext);
 
   const lastSync = resource?.githubLastSync
@@ -43,6 +47,7 @@ const AppGitStatusPanel = ({ resource, showDisconnectedMessage }: Props) => {
         <>
           {showDisconnectedMessage && (
             <div className={`${CLASS_NAME}__message`}>
+<<<<<<< HEAD
               Connect to GitHub to create a Pull Request with the generated code
             </div>
           )}
@@ -57,6 +62,23 @@ const AppGitStatusPanel = ({ resource, showDisconnectedMessage }: Props) => {
               className={`${CLASS_NAME}__connect__button`}
             >
               Connect to GitHub
+=======
+              Connect to a git provider to create a Pull Request with the
+              generated code
+            </div>
+          )}
+          <Link
+            title={"Connect to a git provider"}
+            to={`/${currentWorkspace?.id}/${currentProject?.id}/${resource?.id}/git-sync`}
+          >
+            <Button
+              buttonStyle={EnumButtonStyle.Secondary}
+              icon="git-sync"
+              iconPosition={EnumIconPosition.Left}
+              className={`${CLASS_NAME}__connect__button`}
+            >
+              Connect with a git provider
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
             </Button>
           </Link>
         </>
@@ -66,9 +88,23 @@ const AppGitStatusPanel = ({ resource, showDisconnectedMessage }: Props) => {
           <div className={`${CLASS_NAME}__connected__details`}>
             <GitRepoDetails gitRepositoryFullName={gitRepositoryFullName} />
             <a
+<<<<<<< HEAD
               className={`${CLASS_NAME}__gh-link`}
               href={gitRepositoryUrl}
               target="github"
+=======
+              className={`${CLASS_NAME}__git-link`}
+              href={gitRepositoryUrl}
+              target={
+                gitRepositoryOrganizationProvider ===
+                models.EnumGitProvider.Github
+                  ? "github"
+                  : gitRepositoryOrganizationProvider ===
+                    models.EnumGitProvider.Bitbucket
+                  ? "bitbucket"
+                  : "_blank"
+              }
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
             >
               <Button
                 buttonStyle={EnumButtonStyle.Text}

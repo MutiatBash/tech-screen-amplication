@@ -103,7 +103,12 @@ export class WebhookService {
       });
     } catch (error) {
       this.logger.error(
+<<<<<<< HEAD
         `failed to createWebhooksMessage: verifyAndReceive, error: ${error}`,
+=======
+        `failed to createWebhooksMessage: verifyAndReceive`,
+        error,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         { class: WebhookService.name, id },
       );
       return false;
@@ -151,7 +156,13 @@ export class WebhookService {
     try {
       res = parseInt(value);
     } catch (error) {
+<<<<<<< HEAD
       this.logger.error(error);
+=======
+      this.logger.error(error.message, error, {
+        className: WebhookService.name,
+      });
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     }
     return res;
   }

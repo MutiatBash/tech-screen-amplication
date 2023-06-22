@@ -53,6 +53,16 @@ const logMe = () => {
 }
 ```
 
+<<<<<<< HEAD
+=======
+The minimum log level can be configured also with the `LOG_LEVEL` environment variable, instead of the `logLevel: LogLevel.Warn`, to one of the following values:
+- `debug`
+- `info`
+- `warn`
+- `error`
+
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 ## Testing utilsutils
 
 A mocked provider can be used in unit tests. 

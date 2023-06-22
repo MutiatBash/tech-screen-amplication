@@ -34,6 +34,11 @@ import { kebabCase } from "lodash";
 import { Plugin } from "../../Plugins/hooks/usePlugins";
 import { useQuery } from "@apollo/client";
 import { GET_PLUGIN_VERSIONS_CATALOG } from "../../Plugins/queries/pluginsQueries";
+<<<<<<< HEAD
+=======
+import ImgSvg from "./wizard-pages/ImgSvg";
+import { REACT_APP_PLUGIN_VERSION_USE_LATEST } from "../../env";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 type Props = AppRouteProps & {
   match: match<{
@@ -45,6 +50,10 @@ type Props = AppRouteProps & {
 
 const FLOW_ONBOARDING = "Onboarding";
 const FLOW_CREATE_SERVICE = "Create Service";
+<<<<<<< HEAD
+=======
+const pluginUseLatest = REACT_APP_PLUGIN_VERSION_USE_LATEST === "true";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 export type DefineUser = "Onboarding" | "Create Service";
 
@@ -54,47 +63,87 @@ const ONBOARDING_STEPS: WizardStep[] = [
     hideFooter: true,
     hideBackButton: true,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_Welcome,
+<<<<<<< HEAD
+=======
+    stepName: "CreateServiceWelcome",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 1,
     hideBackButton: true,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_Name,
+<<<<<<< HEAD
+=======
+    stepName: "CreateServiceName",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 2,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_Git,
+<<<<<<< HEAD
+=======
+    stepName: "CreateGithubSync",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 3,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_APISettings,
+<<<<<<< HEAD
+=======
+    stepName: "CreateGenerationSettings",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 4,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_RepoSettings,
+<<<<<<< HEAD
+=======
+    stepName: "CreateServiceRepository",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 5,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_DBSettings,
+<<<<<<< HEAD
+=======
+    stepName: "CreateServiceDatabase",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 6,
     analyticsEventName:
       AnalyticsEventNames.ViewServiceWizardStep_EntitiesSettings,
+<<<<<<< HEAD
+=======
+    stepName: "CreateServiceTemplate",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 7,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_AuthSettings,
+<<<<<<< HEAD
+=======
+    stepName: "CreateServiceAuth",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 8,
     hideBackButton: true,
     analyticsEventName:
       AnalyticsEventNames.ViewServiceWizardStep_CodeGeneration,
+<<<<<<< HEAD
+=======
+    stepName: "CreateServiceCodeGeneration",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 9,
     hideBackButton: true,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_Finish,
+<<<<<<< HEAD
+=======
+    stepName: "CreateServiceNextSteps",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
 ];
 
@@ -105,36 +154,65 @@ const CREATE_SERVICE_STEPS: WizardStep[] = [
     index: 1,
     hideBackButton: true,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_Name,
+<<<<<<< HEAD
+=======
+    stepName: "CreateServiceName",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 2,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_Git,
+<<<<<<< HEAD
+=======
+    stepName: "CreateGithubSync",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 3,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_APISettings,
+<<<<<<< HEAD
+=======
+    stepName: "CreateGenerationSettings",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 4,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_RepoSettings,
+<<<<<<< HEAD
+=======
+    stepName: "CreateServiceRepository",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 5,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_DBSettings,
+<<<<<<< HEAD
+=======
+    stepName: "CreateServiceDatabase",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 6,
     analyticsEventName:
       AnalyticsEventNames.ViewServiceWizardStep_EntitiesSettings,
+<<<<<<< HEAD
+=======
+    stepName: "CreateServiceTemplate",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 7,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_AuthSettings,
+<<<<<<< HEAD
+=======
+    stepName: "CreateServiceAuth",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     index: 9,
     hideBackButton: true,
     analyticsEventName: AnalyticsEventNames.ViewServiceWizardStep_Finish,
+<<<<<<< HEAD
   },
 ];
 const CREATE_SERVICE_PATTERN = CREATE_SERVICE_STEPS.map((step) => step.index);
@@ -157,6 +235,15 @@ const AUTH_PLUGINS = [
     resource: { connect: { id: "" } },
   },
 ];
+=======
+    stepName: "CreateServiceNextSteps",
+  },
+];
+
+const PLUGIN_LOGO_BASE_URL =
+  "https://raw.githubusercontent.com/amplication/plugin-catalog/master/assets/icons/";
+const CREATE_SERVICE_PATTERN = CREATE_SERVICE_STEPS.map((step) => step.index);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 const signupCookie = getCookie("signup");
 
@@ -180,6 +267,22 @@ const CreateServiceWizard: React.FC<Props> = ({
     createResult?.build || null
   );
 
+<<<<<<< HEAD
+=======
+  const PostgresPng = ImgSvg({
+    image: `${PLUGIN_LOGO_BASE_URL}db-postgres.png`,
+    imgSize: "large",
+  });
+  const MongoPng = ImgSvg({
+    image: `${PLUGIN_LOGO_BASE_URL}db-mongo.png`,
+    imgSize: "large",
+  });
+  const MysqlPng = ImgSvg({
+    image: `${PLUGIN_LOGO_BASE_URL}db-mysql.png`,
+    imgSize: "large",
+  });
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   const { data: pluginsVersionData } = useQuery<{
     plugins: Plugin[];
   }>(GET_PLUGIN_VERSIONS_CATALOG, {
@@ -195,6 +298,48 @@ const CreateServiceWizard: React.FC<Props> = ({
     },
   });
 
+<<<<<<< HEAD
+=======
+  const authCorePlugin = pluginsVersionData?.plugins.find(
+    (x) => x.pluginId === "auth-core"
+  );
+
+  const authCoreVersion = pluginUseLatest
+    ? authCorePlugin?.versions.find((x) => x.isLatest)
+    : authCorePlugin?.versions[0];
+
+  const authJwtPlugin = pluginsVersionData?.plugins.find(
+    (x) => x.pluginId === "auth-jwt"
+  );
+
+  const authJwtVersion = pluginUseLatest
+    ? authJwtPlugin?.versions.find((x) => x.isLatest)
+    : authJwtPlugin?.versions[0];
+
+  const AUTH_PLUGINS = [
+    {
+      displayName: "Auth-core",
+      pluginId: "auth-core",
+      enabled: true,
+      npm: "@amplication/plugin-auth-core",
+      version: "latest",
+      resource: { connect: { id: "" } },
+      settings: authCoreVersion?.settings || JSON.parse("{}"),
+      configurations: authCoreVersion?.configurations || JSON.parse("{}"),
+    },
+    {
+      displayName: "Auth-jwt",
+      pluginId: "auth-jwt",
+      enabled: true,
+      npm: "@amplication/plugin-auth-jwt",
+      version: "latest",
+      resource: { connect: { id: "" } },
+      settings: authJwtVersion?.settings || JSON.parse("{}"),
+      configurations: authJwtVersion?.configurations || JSON.parse("{}"),
+    },
+  ];
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   const defineUser: DefineUser =
     signupCookie === "1" ? FLOW_ONBOARDING : FLOW_CREATE_SERVICE;
 
@@ -255,7 +400,14 @@ const CreateServiceWizard: React.FC<Props> = ({
       const dbPlugin = pluginsVersionData?.plugins.find(
         (x) => x.pluginId === `db-${databaseType}`
       );
+<<<<<<< HEAD
       const dbLastVersion = dbPlugin?.versions[dbPlugin?.versions.length - 1];
+=======
+
+      const dbLastVersion = pluginUseLatest
+        ? dbPlugin?.versions.find((x) => x.isLatest)
+        : dbPlugin?.versions[0];
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
       const authCorePlugins = authType === "core" && AUTH_PLUGINS;
 
@@ -268,7 +420,12 @@ const CreateServiceWizard: React.FC<Props> = ({
             npm: `@amplication/plugin-db-${databaseType}`,
             version: "latest",
             resource: { connect: { id: "" } },
+<<<<<<< HEAD
             settings: JSON.parse(dbLastVersion?.settings || "{}"),
+=======
+            settings: dbLastVersion?.settings || JSON.parse("{}"),
+            configurations: dbLastVersion?.configurations || JSON.parse("{}"),
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
           },
         ],
       };
@@ -276,11 +433,21 @@ const CreateServiceWizard: React.FC<Props> = ({
       if (authCorePlugins) data.plugins.push(...authCorePlugins);
       return data;
     },
+<<<<<<< HEAD
     [pluginsVersionData?.plugins]
+=======
+    [pluginsVersionData]
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   );
 
   const handleCloseWizard = useCallback(
     (currentPage: string) => {
+<<<<<<< HEAD
+=======
+      trackWizardPageEvent(AnalyticsEventNames.ServiceWizardStep_CloseClick, {
+        step: currentPage,
+      });
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       history.push(`/${currentWorkspace.id}/${currentProject.id}`);
     },
     [currentWorkspace, currentProject]
@@ -288,6 +455,7 @@ const CreateServiceWizard: React.FC<Props> = ({
 
   const handleWizardProgress = useCallback(
     (
+<<<<<<< HEAD
       dir: "next" | "prev",
       page: string,
       pageEventName: AnalyticsEventNames
@@ -309,6 +477,16 @@ const CreateServiceWizard: React.FC<Props> = ({
         category: "Service Wizard",
         WizardType: defineUser,
       });
+=======
+      eventName:
+        | AnalyticsEventNames.ServiceWizardStep_ContinueClicked
+        | AnalyticsEventNames.ServiceWizardStep_BackClicked,
+      page: string,
+      pageEventName: AnalyticsEventNames
+    ) => {
+      trackWizardPageEvent(eventName, { step: page });
+      trackWizardPageEvent(pageEventName);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     },
     []
   );
@@ -338,12 +516,20 @@ const CreateServiceWizard: React.FC<Props> = ({
         generateRestApi,
         gitOrganizationId,
         gitRepositoryName,
+<<<<<<< HEAD
+=======
+        groupName,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         isOverrideGitRepository,
         authType,
         databaseType,
         templateType,
         structureType,
         baseDir,
+<<<<<<< HEAD
+=======
+        connectToDemoRepo,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       } = values;
 
       const kebabCaseServiceName = kebabCase(serviceName);
@@ -363,10 +549,18 @@ const CreateServiceWizard: React.FC<Props> = ({
           currentGitRepository = {
             name: gitRepositoryName,
             gitOrganizationId: gitOrganizationId,
+<<<<<<< HEAD
+=======
+            groupName,
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
             resourceId: "",
             isOverrideGitRepository: isOverrideGitRepository,
           };
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         const resource = prepareServiceObject(
           serviceName,
           currentProject?.id,
@@ -381,15 +575,25 @@ const CreateServiceWizard: React.FC<Props> = ({
           defineUser,
           structureType,
           databaseType,
+<<<<<<< HEAD
           authType
           // gitOrganizationName
         );
 
+=======
+          authType,
+          connectToDemoRepo
+        );
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         createStarterResource(resource, templateSettings.eventName);
       }
       expireCookie("signup");
     },
+<<<<<<< HEAD
     []
+=======
+    [pluginsVersionData]
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   );
 
   return (
@@ -429,6 +633,12 @@ const CreateServiceWizard: React.FC<Props> = ({
           trackWizardPageEvent={trackWizardPageEvent}
         />
         <CreateServiceDatabase
+<<<<<<< HEAD
+=======
+          PostgresPng={PostgresPng}
+          MongoPng={MongoPng}
+          MysqlPng={MysqlPng}
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
           moduleClass={moduleClass}
           trackWizardPageEvent={trackWizardPageEvent}
         />

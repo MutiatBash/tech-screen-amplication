@@ -1,6 +1,10 @@
 @import "../../style/index.scss";
 
+<<<<<<< HEAD
 .auth-app-with-github {
+=======
+.auth-app-with-git {
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   margin-left: 0 !important;
   padding-left: 0 !important;
   padding-bottom: 0 !important;
@@ -15,6 +19,7 @@
   }
 
   &__notice {
+<<<<<<< HEAD
     &__title {
       @include body2;
       color: var(--black100);
@@ -22,13 +27,27 @@
     text-align: left;
     margin-top: var(--medium-spacing);
     color: var(--black100);
+=======
+    color: var(--black100);
+    &__title {
+      @include body2;
+    }
+    text-align: left;
+    margin-top: var(--medium-spacing);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
     ul {
       margin: 0;
       padding: 0;
       padding-top: var(--default-spacing-small);
+<<<<<<< HEAD
       color: var(--black60);
       li {
+=======
+      li {
+        @include regular-10;
+        color: var(--black80);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         line-height: var(--double-spacing);
         list-style: none;
         margin: 0;
@@ -50,8 +69,15 @@
       }
     }
   }
+<<<<<<< HEAD
 
   .select-menu__modal {
     left: 0;
   }
+=======
+}
+
+.git-organization-dialog {
+  width: 750px !important;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 }

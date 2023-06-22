@@ -6,8 +6,16 @@ const CLASS_NAME = "promo-banner";
 
 export const PromoBanner = () => {
   const [isFreePlan, setFreePlan] = useState(false);
+<<<<<<< HEAD
 
   const { stigg, isInitialized } = useStiggContext();
+=======
+  const [backgroundImage, setBackgroundImage] = useState(null);
+
+  const { stigg, isInitialized } = useStiggContext();
+  const imgSrc =
+    "https://static-assets.amplication.com/marketing/banners/promo-banner.png";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
   useEffect(() => {
     async function getCustomer() {
@@ -22,6 +30,7 @@ export const PromoBanner = () => {
     getCustomer();
   }, [isInitialized]);
 
+<<<<<<< HEAD
   return (
     isFreePlan && (
       <div className={CLASS_NAME}>
@@ -47,6 +56,31 @@ export const PromoBanner = () => {
           </div>
         </div>
       </div>
+=======
+  useEffect(() => {
+    const bannerBackgroundImage = new Image();
+    bannerBackgroundImage.src = imgSrc;
+
+    bannerBackgroundImage.onload = () => {
+      if (
+        bannerBackgroundImage.width !== 1 ||
+        bannerBackgroundImage.height !== 1
+      ) {
+        setBackgroundImage(imgSrc);
+      } else {
+        setBackgroundImage(null);
+      }
+    };
+  }, [imgSrc]);
+
+  return (
+    isFreePlan &&
+    backgroundImage && (
+      <div
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+        className={CLASS_NAME}
+      />
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
     )
   );
 };

@@ -1,8 +1,21 @@
 @import "../../../style/index.scss";
 
 .git-organization-select-menu {
+<<<<<<< HEAD
   &__select-menu {
     background: var(--black2);
+=======
+  &__label-title {
+    @include regular-10;
+    padding-bottom: var(--icon-spacing);
+    color: var(--black80);
+  }
+
+  &__select-menu {
+    background: var(--white);
+    width: 268px;
+    margin: 0px;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   }
 
   &__menu {
@@ -10,12 +23,21 @@
     border: 1px solid #373d57;
     box-sizing: border-box;
     border-radius: 4px;
+<<<<<<< HEAD
+=======
+    background-color: var(--white);
+    position: relative;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
     .amp-button {
       height: 28px;
       width: 100%;
       justify-content: space-between;
       padding: 5px 8px;
+<<<<<<< HEAD
+=======
+      background: var(--white);
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
       .menu-item-content__text {
         max-width: 180px;
@@ -30,10 +52,61 @@
       margin-right: var(--double-spacing);
     }
   }
+<<<<<<< HEAD
   &__hr {
     border: none;
     border-top: $border-black5;
     margin-left: var(--default-spacing-small);
     margin-right: var(--default-spacing-small);
+=======
+
+  &__list {
+    top: 28px;
+    & div {
+      width: 265px;
+      border: 1px solid var(--black10);
+      margin: 0;
+    }
+  }
+
+  &__item {
+    background-color: transparent;
+    border: none;
+    width: 268px;
+    padding: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 5px 0px 5px 6px;
+
+    & svg {
+      margin-top: 5px;
+      margin-left: 6px;
+    }
+    & .menu-item-content__text {
+      width: 200px;
+    }
+  }
+
+  &__item:hover {
+    background-color: var(--black5);
+  }
+
+  &__add-item {
+    background-color: var(--black5);
+    height: 34px;
+    display: flex;
+    color: var(--black80);
+
+    align-items: center;
+    & i {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+  &__add-item:hover {
+    cursor: pointer;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   }
 }

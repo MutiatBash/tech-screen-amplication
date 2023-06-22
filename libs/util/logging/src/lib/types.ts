@@ -22,8 +22,13 @@ export interface ILogger {
   warn: (message: string, params?: Record<string, unknown>) => void;
   error: (
     message: string,
+<<<<<<< HEAD
     params?: Record<string, unknown>,
     err?: Error
+=======
+    err?: Error,
+    params?: Record<string, unknown>
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   ) => void;
   child: (metadata?: Pick<LoggerOptions, "metadata">) => ILogger;
 }

@@ -277,28 +277,32 @@ export type CompleteInvitationInput = {
 
 export type ConnectGitRepositoryInput = {
   gitOrganizationId: Scalars['String'];
+  /** Name of the git provider repository group. It is mandatory when GitOrganisation.useGroupingForRepositories is true */
+  groupName?: InputMaybe<Scalars['String']>;
   isOverrideGitRepository?: InputMaybe<Scalars['Boolean']>;
   name: Scalars['String'];
   resourceId: Scalars['String'];
 };
 
 export type CreateGitRepositoryBaseInput = {
-  gitGroupName?: InputMaybe<Scalars['String']>;
   gitOrganizationId: Scalars['String'];
   gitOrganizationType: EnumGitOrganizationType;
   gitProvider: EnumGitProvider;
+  /** Name of the git provider repository group. It is mandatory when GitOrganisation.useGroupingForRepositories is true */
+  groupName?: InputMaybe<Scalars['String']>;
+  isPublic: Scalars['Boolean'];
   name: Scalars['String'];
-  public: Scalars['Boolean'];
 };
 
 export type CreateGitRepositoryInput = {
-  gitGroupName?: InputMaybe<Scalars['String']>;
   gitOrganizationId: Scalars['String'];
   gitOrganizationType: EnumGitOrganizationType;
   gitProvider: EnumGitProvider;
+  /** Name of the git provider repository group. It is mandatory when GitOrganisation.useGroupingForRepositories is true */
+  groupName?: InputMaybe<Scalars['String']>;
+  isPublic: Scalars['Boolean'];
   name: Scalars['String'];
-  public: Scalars['Boolean'];
-  resourceId: Scalars['String'];
+  resourceId?: InputMaybe<Scalars['String']>;
 };
 
 export type DateTimeFilter = {
@@ -312,8 +316,13 @@ export type DateTimeFilter = {
   notIn?: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
+export type DefaultEntitiesInput = {
+  resourceId: Scalars['String'];
+};
+
 export type Entity = {
   createdAt: Scalars['DateTime'];
+  customAttributes?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   displayName: Scalars['String'];
   fields?: Maybe<Array<EntityField>>;
@@ -353,6 +362,7 @@ export type EntityAddPermissionFieldInput = {
 };
 
 export type EntityCreateInput = {
+  customAttributes?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
   displayName: Scalars['String'];
   name: Scalars['String'];
@@ -362,6 +372,7 @@ export type EntityCreateInput = {
 
 export type EntityField = {
   createdAt: Scalars['DateTime'];
+  customAttributes?: Maybe<Scalars['String']>;
   dataType: EnumDataType;
   description?: Maybe<Scalars['String']>;
   displayName: Scalars['String'];
@@ -383,6 +394,7 @@ export type EntityFieldCreateByDisplayNameInput = {
 };
 
 export type EntityFieldCreateInput = {
+  customAttributes?: InputMaybe<Scalars['String']>;
   dataType: EnumDataType;
   description: Scalars['String'];
   displayName: Scalars['String'];
@@ -403,6 +415,7 @@ export type EntityFieldFilter = {
 
 export type EntityFieldOrderByInput = {
   createdAt?: InputMaybe<SortOrder>;
+  customAttributes?: InputMaybe<SortOrder>;
   dataType?: InputMaybe<SortOrder>;
   description?: InputMaybe<SortOrder>;
   displayName?: InputMaybe<SortOrder>;
@@ -417,6 +430,7 @@ export type EntityFieldOrderByInput = {
 };
 
 export type EntityFieldUpdateInput = {
+  customAttributes?: InputMaybe<Scalars['String']>;
   dataType?: InputMaybe<EnumDataType>;
   description?: InputMaybe<Scalars['String']>;
   displayName?: InputMaybe<Scalars['String']>;
@@ -430,6 +444,7 @@ export type EntityFieldUpdateInput = {
 
 export type EntityFieldWhereInput = {
   createdAt?: InputMaybe<DateTimeFilter>;
+  customAttributes?: InputMaybe<StringFilter>;
   dataType?: InputMaybe<EnumDataTypeFilter>;
   description?: InputMaybe<StringFilter>;
   displayName?: InputMaybe<StringFilter>;
@@ -444,6 +459,7 @@ export type EntityFieldWhereInput = {
 
 export type EntityOrderByInput = {
   createdAt?: InputMaybe<SortOrder>;
+  customAttributes?: InputMaybe<SortOrder>;
   description?: InputMaybe<SortOrder>;
   displayName?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -488,6 +504,7 @@ export type EntityPermissionRole = {
 };
 
 export type EntityUpdateInput = {
+  customAttributes?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
   displayName?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
@@ -515,6 +532,7 @@ export type EntityUpdatePermissionRolesInput = {
 export type EntityVersion = {
   commit?: Maybe<Commit>;
   createdAt: Scalars['DateTime'];
+  customAttributes?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   displayName: Scalars['String'];
   entity: Entity;
@@ -538,6 +556,7 @@ export type EntityVersionFieldsArgs = {
 
 export type EntityVersionOrderByInput = {
   createdAt?: InputMaybe<SortOrder>;
+  customAttributes?: InputMaybe<SortOrder>;
   description?: InputMaybe<SortOrder>;
   displayName?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
@@ -550,6 +569,7 @@ export type EntityVersionOrderByInput = {
 
 export type EntityVersionWhereInput = {
   createdAt?: InputMaybe<DateTimeFilter>;
+  customAttributes?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   displayName?: InputMaybe<StringFilter>;
   entity?: InputMaybe<WhereUniqueInput>;
@@ -563,6 +583,7 @@ export type EntityVersionWhereInput = {
 
 export type EntityWhereInput = {
   createdAt?: InputMaybe<DateTimeFilter>;
+  customAttributes?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   displayName?: InputMaybe<StringFilter>;
   fields?: InputMaybe<EntityFieldFilter>;
@@ -732,10 +753,11 @@ export type GitGetInstallationUrlInput = {
   gitProvider: EnumGitProvider;
 };
 
+/** Group of Repositories */
 export type GitGroup = {
+  displayName: Scalars['String'];
   id: Scalars['String'];
   name: Scalars['String'];
-  slug: Scalars['String'];
 };
 
 export type GitGroupInput = {
@@ -755,6 +777,7 @@ export type GitOrganization = {
   provider: EnumGitProvider;
   type: EnumGitOrganizationType;
   updatedAt: Scalars['DateTime'];
+  /** Defines if a git organisation needs defined repository groups */
   useGroupingForRepositories: Scalars['Boolean'];
 };
 
@@ -771,6 +794,7 @@ export type GitRepository = {
   createdAt?: Maybe<Scalars['DateTime']>;
   gitOrganization: GitOrganization;
   gitOrganizationId: Scalars['String'];
+  groupName?: Maybe<Scalars['String']>;
   id: Scalars['String'];
   name: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -837,21 +861,22 @@ export type Mutation = {
   commit?: Maybe<Commit>;
   completeGitOAuth2Flow: GitOrganization;
   completeInvitation: Auth;
+  connectGitRepository: Resource;
   connectResourceGitRepository: Resource;
   connectResourceToProjectRepository: Resource;
   createApiToken: ApiToken;
   createBuild: Build;
+  createDefaultEntities?: Maybe<Array<Entity>>;
   createDefaultRelatedField: EntityField;
   createEntityField: EntityField;
   createEntityFieldByDisplayName: EntityField;
-  createGitRepository: Resource;
   createMessageBroker: Resource;
   createOneEntity: Entity;
+  /** Only for GitHub integrations */
   createOrganization: GitOrganization;
   createPluginInstallation: PluginInstallation;
-  createPluginInstallations?: Maybe<Array<PluginInstallation>>;
   createProject: Project;
-  createRemoteGitRepository: Scalars['Boolean'];
+  createRemoteGitRepository: RemoteGitRepository;
   createResourceRole: ResourceRole;
   createService: Resource;
   createServiceTopics: ServiceTopics;
@@ -927,6 +952,11 @@ export type MutationCompleteInvitationArgs = {
 };
 
 
+export type MutationConnectGitRepositoryArgs = {
+  data: CreateGitRepositoryInput;
+};
+
+
 export type MutationConnectResourceGitRepositoryArgs = {
   data: ConnectGitRepositoryInput;
 };
@@ -944,6 +974,11 @@ export type MutationCreateApiTokenArgs = {
 
 export type MutationCreateBuildArgs = {
   data: BuildCreateInput;
+};
+
+
+export type MutationCreateDefaultEntitiesArgs = {
+  data: DefaultEntitiesInput;
 };
 
 
@@ -966,11 +1001,6 @@ export type MutationCreateEntityFieldByDisplayNameArgs = {
 };
 
 
-export type MutationCreateGitRepositoryArgs = {
-  data: CreateGitRepositoryInput;
-};
-
-
 export type MutationCreateMessageBrokerArgs = {
   data: ResourceCreateInput;
 };
@@ -988,12 +1018,6 @@ export type MutationCreateOrganizationArgs = {
 
 export type MutationCreatePluginInstallationArgs = {
   data: PluginInstallationCreateInput;
-};
-
-
-export type MutationCreatePluginInstallationsArgs = {
-  data: PluginInstallationsCreateInput;
-  where: WhereUniqueInput;
 };
 
 
@@ -1257,13 +1281,20 @@ export type MutationUpdateWorkspaceArgs = {
   where: WhereUniqueInput;
 };
 
+/** Returns a paginated list of repository groups available to select. */
 export type PaginatedGitGroup = {
   groups?: Maybe<Array<GitGroup>>;
-  next?: Maybe<Scalars['String']>;
+  /** Page number */
   page: Scalars['Float'];
-  pagelen: Scalars['Float'];
-  previous?: Maybe<Scalars['String']>;
-  size: Scalars['Float'];
+  /** Number of groups per page */
+  pageSize: Scalars['Float'];
+  /** Total number of groups */
+  total: Scalars['Float'];
+};
+
+export type Pagination = {
+  page: Scalars['Float'];
+  perPage: Scalars['Float'];
 };
 
 export type PendingChange = {
@@ -1287,6 +1318,7 @@ export type PendingChangesFindInput = {
 
 export type PluginInstallation = IBlock & {
   blockType: EnumBlockType;
+  configurations?: Maybe<Scalars['JSONObject']>;
   createdAt: Scalars['DateTime'];
   description?: Maybe<Scalars['String']>;
   displayName: Scalars['String'];
@@ -1307,6 +1339,7 @@ export type PluginInstallation = IBlock & {
 };
 
 export type PluginInstallationCreateInput = {
+  configurations?: InputMaybe<Scalars['JSONObject']>;
   description?: InputMaybe<Scalars['String']>;
   displayName: Scalars['String'];
   enabled: Scalars['Boolean'];
@@ -1330,6 +1363,7 @@ export type PluginInstallationOrderByInput = {
 };
 
 export type PluginInstallationUpdateInput = {
+  configurations?: InputMaybe<Scalars['JSONObject']>;
   description?: InputMaybe<Scalars['String']>;
   displayName?: InputMaybe<Scalars['String']>;
   enabled: Scalars['Boolean'];
@@ -1379,10 +1413,12 @@ export type PluginSetOrderInput = {
 
 export type Project = {
   createdAt: Scalars['DateTime'];
+  demoRepoName?: Maybe<Scalars['String']>;
   id: Scalars['String'];
   name: Scalars['String'];
   resources?: Maybe<Array<Resource>>;
   updatedAt: Scalars['DateTime'];
+  useDemoRepo: Scalars['Boolean'];
 };
 
 export type ProjectConfigurationSettings = IBlock & {
@@ -1688,24 +1724,26 @@ export enum QueryMode {
 }
 
 export type RemoteGitRepos = {
-  currentPage: Scalars['Float'];
-  pageSize: Scalars['Float'];
+  pagination: Pagination;
   repos: Array<RemoteGitRepository>;
-  totalRepos: Scalars['Float'];
+  total: Scalars['Float'];
 };
 
 export type RemoteGitRepositoriesWhereUniqueInput = {
-  gitGroupName?: InputMaybe<Scalars['String']>;
   gitOrganizationId: Scalars['String'];
   gitProvider: EnumGitProvider;
-  limit: Scalars['Float'];
-  page: Scalars['Float'];
+  groupName?: InputMaybe<Scalars['String']>;
+  /** The page number. One-based indexing */
+  page?: Scalars['Float'];
+  /** The number of items to return per page */
+  perPage?: Scalars['Float'];
 };
 
 export type RemoteGitRepository = {
   admin: Scalars['Boolean'];
   defaultBranch: Scalars['String'];
   fullName: Scalars['String'];
+  groupName?: Maybe<Scalars['String']>;
   name: Scalars['String'];
   private: Scalars['Boolean'];
   url: Scalars['String'];
@@ -1769,6 +1807,7 @@ export type ResourceCreateWithEntitiesFieldInput = {
 export type ResourceCreateWithEntitiesInput = {
   authType: Scalars['String'];
   commitMessage: Scalars['String'];
+  connectToDemoRepo: Scalars['Boolean'];
   dbType: Scalars['String'];
   entities: Array<ResourceCreateWithEntitiesEntityInput>;
   plugins?: InputMaybe<PluginInstallationsCreateInput>;

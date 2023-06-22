@@ -10,7 +10,16 @@ export function createNestjsKafkaConfig(envSuffix = ""): KafkaOptions {
   const groupId = kafkaEnv.getGroupId();
   let consumer: ConsumerConfig | undefined;
   if (groupId) {
+<<<<<<< HEAD
     consumer = { groupId };
+=======
+    consumer = {
+      groupId,
+      sessionTimeout: kafkaEnv.getConsumerSessionTimeout(),
+      rebalanceTimeout: kafkaEnv.getConsumerRebalanceTimeout(),
+      heartbeatInterval: kafkaEnv.getConsumerHeartbeat(),
+    };
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   }
 
   return {

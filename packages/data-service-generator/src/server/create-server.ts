@@ -1,8 +1,8 @@
 import * as path from "path";
 import {
-  Module,
   EventNames,
   CreateServerParams,
+  ModuleMap,
 } from "@amplication/code-gen-types";
 import { readStaticModules } from "../utils/read-static-modules";
 import { formatCode, formatJson } from "@amplication/code-gen-utils";
@@ -25,13 +25,13 @@ import { createGitIgnore } from "./gitignore/create-gitignore";
 
 const STATIC_DIRECTORY = path.resolve(__dirname, "static");
 
-export function createServer(): Promise<Module[]> {
+export function createServer(): Promise<ModuleMap> {
   return pluginWrapper(createServerInternal, EventNames.CreateServer, {});
 }
 
 async function createServerInternal(
   eventParams: CreateServerParams
-): Promise<Module[]> {
+): Promise<ModuleMap> {
   const { serverDirectories, entities } = DsgContext.getInstance;
 
   const context = DsgContext.getInstance;
@@ -44,7 +44,7 @@ async function createServerInternal(
   const { GIT_REF_NAME: gitRefName, GIT_SHA: gitSha } = process.env;
 
   await context.logger.info(
-    `Running DSG Version: ${gitRefName} <${gitSha?.substring(0, 6)}>`
+    `Running DSG version: ${gitRefName} <${gitSha?.substring(0, 6)}>`
   );
 
   await context.logger.info(`Server path: ${serverDirectories.baseDirectory}`);
@@ -65,7 +65,7 @@ async function createServerInternal(
   const dtoModules = await createDTOModules(dtos);
   const resourcesModules = await createResourcesModules(entities);
 
-  await context.logger.info("Creating Auth module...");
+  await context.logger.info("Creating auth module...");
   const authModules = await createAuthModules();
 
   await context.logger.info("Creating swagger...");
@@ -74,34 +74,29 @@ async function createServerInternal(
   await context.logger.info("Creating seed script...");
   const seedModule = await createSeed();
 
-  await context.logger.info("Creating Message broker modules...");
+  await context.logger.info("Creating message broker modules...");
   const messageBrokerModules = await createMessageBroker({});
 
   await context.logger.info("Creating application module...");
-  const appModule = await createAppModule([
-    ...resourcesModules,
-    ...staticModules,
+
+  const appModuleInputModules = new ModuleMap(context.logger);
+  await appModuleInputModules.mergeMany([resourcesModules, staticModules]);
+  const appModule = await createAppModule(appModuleInputModules);
+
+  const createdModules = new ModuleMap(context.logger);
+  await createdModules.mergeMany([
+    resourcesModules,
+    dtoModules,
+    swagger,
+    appModule,
+    seedModule,
+    authModules,
+    messageBrokerModules,
   ]);
 
-  const createdModules = [
-    ...resourcesModules,
-    ...dtoModules,
-    ...swagger,
-    ...appModule,
-    ...seedModule,
-    ...authModules,
-    ...messageBrokerModules,
-  ];
-
   await context.logger.info("Formatting code...");
-  const formattedModules = createdModules.map((module) => ({
-    ...module,
-    code: formatCode(module.code),
-  }));
-  const formattedJsonFiles = [...packageJsonModule].map((module) => ({
-    ...module,
-    code: formatJson(module.code),
-  }));
+  await createdModules.replaceModulesCode((code) => formatCode(code));
+  await packageJsonModule.replaceModulesCode((code) => formatJson(code));
 
   await context.logger.info("Creating Prisma schema...");
   const prismaSchemaModule = await createPrismaSchemaModule(entities);
@@ -115,14 +110,16 @@ async function createServerInternal(
   const dockerComposeFile = await createDockerComposeFile();
   const dockerComposeDBFile = await createDockerComposeDBFile();
 
-  return [
-    ...staticModules,
-    ...gitIgnore,
-    ...formattedJsonFiles,
-    ...formattedModules,
-    ...prismaSchemaModule,
-    ...dotEnvModule,
-    ...dockerComposeFile,
-    ...dockerComposeDBFile,
-  ];
+  const moduleMap = new ModuleMap(context.logger);
+  await moduleMap.mergeMany([
+    staticModules,
+    gitIgnore,
+    packageJsonModule,
+    createdModules,
+    prismaSchemaModule,
+    dotEnvModule,
+    dockerComposeFile,
+    dockerComposeDBFile,
+  ]);
+  return moduleMap;
 }

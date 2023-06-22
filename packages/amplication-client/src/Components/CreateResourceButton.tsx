@@ -23,7 +23,11 @@ const ITEMS: CreateResourceButtonItemType[] = [
     type: models.EnumResourceType.Service,
     label: "Service",
     route: "create-resource",
+<<<<<<< HEAD
     info: "Create a service with your choice of API type (GraphQL/REST), database, and authentication options",
+=======
+    info: "Create a service with your choice of APIs, database, and authentication",
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   },
   {
     type: models.EnumResourceType.MessageBroker,

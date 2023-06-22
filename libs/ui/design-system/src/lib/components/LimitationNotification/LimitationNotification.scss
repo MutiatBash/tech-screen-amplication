@@ -6,6 +6,7 @@
   border-radius: 8px;
   color: var(--black80);
   min-height: 42px;
+<<<<<<< HEAD
 
   .upgrade-link {
     color: #53dbee;
@@ -13,4 +14,14 @@
     font-weight: 500;
     margin-left: 4px;
   }
+=======
+}
+
+.upgrade-link,
+.contact-us-link {
+  color: #53dbee;
+  text-decoration: underline;
+  font-weight: 500;
+  margin-left: 4px;
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 }

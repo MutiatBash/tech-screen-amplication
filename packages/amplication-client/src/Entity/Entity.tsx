@@ -11,13 +11,20 @@ import EntityFieldList from "./EntityFieldList";
 import EntityField from "../Entity/EntityField";
 import PermissionsForm from "../Permissions/PermissionsForm";
 import { ENTITY_ACTIONS } from "./constants";
+<<<<<<< HEAD
 import { useTracking, track } from "../util/analytics";
+=======
+import { track } from "../util/analytics";
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 import InnerTabLink from "../Layout/InnerTabLink";
 import RouteWithAnalytics from "../Layout/RouteWithAnalytics";
 
 import "./Entity.scss";
 import { AppContext } from "../context/appContext";
+<<<<<<< HEAD
 import { AnalyticsEventNames } from "../util/analytics-events.types";
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
 
 type Props = {
   match: match<{ resource: string; entityId: string; fieldId: string }>;
@@ -33,7 +40,10 @@ type UpdateData = {
 
 const Entity = ({ match }: Props) => {
   const { entityId, resource } = match.params;
+<<<<<<< HEAD
   const { trackEvent } = useTracking();
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
   const { addEntity, currentWorkspace, currentProject } =
     useContext(AppContext);
 
@@ -47,10 +57,13 @@ const Entity = ({ match }: Props) => {
     UPDATE_ENTITY,
     {
       onCompleted: (data) => {
+<<<<<<< HEAD
         trackEvent({
           eventName: AnalyticsEventNames.EntityUpdate,
           entityName: data.updateEntity.displayName,
         });
+=======
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         addEntity(data.updateEntity.id);
       },
     }
@@ -165,6 +178,10 @@ export const GET_ENTITY = gql`
       name
       displayName
       pluralDisplayName
+<<<<<<< HEAD
+=======
+      customAttributes
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       description
       lockedAt
       lockedByUser {
@@ -180,6 +197,10 @@ export const GET_ENTITY = gql`
         unique
         required
         searchable
+<<<<<<< HEAD
+=======
+        customAttributes
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         dataType
         description
       }
@@ -194,6 +215,10 @@ const UPDATE_ENTITY = gql`
       name
       displayName
       pluralDisplayName
+<<<<<<< HEAD
+=======
+      customAttributes
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
       description
       lockedAt
       lockedByUser {
@@ -209,6 +234,10 @@ const UPDATE_ENTITY = gql`
         required
         unique
         searchable
+<<<<<<< HEAD
+=======
+        customAttributes
+>>>>>>> 46ef1fee2562a397e75dc75d8aa1b3e2356c30e9
         dataType
         description
       }
